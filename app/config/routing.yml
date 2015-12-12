@@ -1,0 +1,7 @@
+xg_people:
+    resource: "@XGPeopleBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

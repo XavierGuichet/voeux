@@ -1,0 +1,3 @@
+xg_people_homepage:
+    path:     /
+    defaults: { _controller: XGPeopleBundle:Default:index }
