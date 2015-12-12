@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ContenuMail
+ * Questionnaire
  *
- * @ORM\Table(name="contenu_mail")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ContenuMailRepository")
+ * @ORM\Table(name="questionnaire")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\QuestionnaireRepository")
  */
-class ContenuMail
+class Questionnaire
 {
     /**
      * @var int
@@ -24,9 +24,9 @@ class ContenuMail
     /**
      * @var string
      *
-     * @ORM\Column(name="ContenuTxt", type="text")
+     * @ORM\Column(name="Titre", type="string", length=255, unique=true)
      */
-    private $contenuTxt;
+    private $titre;
 
 
     /**
@@ -40,26 +40,27 @@ class ContenuMail
     }
 
     /**
-     * Set contenuTxt
+     * Set titre
      *
-     * @param string $contenuTxt
+     * @param string $titre
      *
-     * @return ContenuMail
+     * @return Questionnaire
      */
-    public function setContenuTxt($contenuTxt)
+    public function setTitre($titre)
     {
-        $this->contenuTxt = $contenuTxt;
+        $this->titre = $titre;
 
         return $this;
     }
 
     /**
-     * Get contenuTxt
+     * Get titre
      *
      * @return string
      */
-    public function getContenuTxt()
+    public function getTitre()
     {
-        return $this->contenuTxt;
+        return $this->titre;
     }
 }
+

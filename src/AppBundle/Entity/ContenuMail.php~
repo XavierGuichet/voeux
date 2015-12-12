@@ -63,3 +63,4 @@ class ContenuMail
         return $this->contenuTxt;
     }
 }
+

@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Questionnaire
+ * Choix
  *
- * @ORM\Table(name="questionnaire")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\QuestionnaireRepository")
+ * @ORM\Table(name="choix")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ChoixRepository")
  */
-class Questionnaire
+class Choix
 {
     /**
      * @var int
@@ -24,7 +24,14 @@ class Questionnaire
     /**
      * @var string
      *
-     * @ORM\Column(name="Titre", type="string", length=255, unique=true)
+     * @ORM\Column(name="imagepath", type="string", length=255)
+     */
+    private $imagepath;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="string", length=255)
      */
     private $titre;
 
@@ -40,11 +47,35 @@ class Questionnaire
     }
 
     /**
+     * Set imagepath
+     *
+     * @param string $imagepath
+     *
+     * @return Choix
+     */
+    public function setImagepath($imagepath)
+    {
+        $this->imagepath = $imagepath;
+
+        return $this;
+    }
+
+    /**
+     * Get imagepath
+     *
+     * @return string
+     */
+    public function getImagepath()
+    {
+        return $this->imagepath;
+    }
+
+    /**
      * Set titre
      *
      * @param string $titre
      *
-     * @return Questionnaire
+     * @return Choix
      */
     public function setTitre($titre)
     {
@@ -63,3 +94,4 @@ class Questionnaire
         return $this->titre;
     }
 }
+
