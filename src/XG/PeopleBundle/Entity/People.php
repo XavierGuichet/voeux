@@ -22,11 +22,11 @@ class People
     private $id;
 
     /**
-     * @var string
+     * @var boolean
      *
-     * @ORM\Column(name="Civilite", type="string", length=255, nullable=true)
+     * @ORM\Column(name="ismale", type="boolean")
      */
-    private $civilite;
+    private $ismale;
 
     /**
      * @var string
@@ -278,5 +278,29 @@ class People
     public function getSociete()
     {
         return $this->societe;
+    }
+
+    /**
+     * Set ismale
+     *
+     * @param boolean $ismale
+     *
+     * @return People
+     */
+    public function setIsmale($ismale)
+    {
+        $this->ismale = $ismale;
+
+        return $this;
+    }
+
+    /**
+     * Get ismale
+     *
+     * @return boolean
+     */
+    public function getIsmale()
+    {
+        return $this->ismale;
     }
 }

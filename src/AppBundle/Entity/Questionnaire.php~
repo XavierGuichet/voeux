@@ -28,11 +28,17 @@ class Questionnaire
      */
     private $titre;
 
-
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\QuestionnaireQuestion",mappedBy="questionnaire")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $questions;
+    
+    
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -63,4 +69,3 @@ class Questionnaire
         return $this->titre;
     }
 }
-

@@ -24,14 +24,14 @@ class Choix
     /**
      * @var string
      *
-     * @ORM\Column(name="imagepath", type="string", length=255)
+     * @ORM\Column(name="imagepath", type="string", length=255,nullable=true)
      */
     private $imagepath;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=255)
+     * @ORM\Column(name="titre", type="string", length=255,nullable=true)
      */
     private $titre;
 
@@ -94,4 +94,3 @@ class Choix
         return $this->titre;
     }
 }
-

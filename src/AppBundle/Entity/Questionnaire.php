@@ -28,11 +28,17 @@ class Questionnaire
      */
     private $titre;
 
-
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\QuestionnaireQuestion",mappedBy="questionnaire")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $questions;
+    
+    
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -61,5 +67,46 @@ class Questionnaire
     public function getTitre()
     {
         return $this->titre;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->questions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add question
+     *
+     * @param \AppBundle\Entity\QuestionnaireQuestion $question
+     *
+     * @return Questionnaire
+     */
+    public function addQuestion(\AppBundle\Entity\QuestionnaireQuestion $question)
+    {
+        $this->questions[] = $question;
+
+        return $this;
+    }
+
+    /**
+     * Remove question
+     *
+     * @param \AppBundle\Entity\QuestionnaireQuestion $question
+     */
+    public function removeQuestion(\AppBundle\Entity\QuestionnaireQuestion $question)
+    {
+        $this->questions->removeElement($question);
+    }
+
+    /**
+     * Get questions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getQuestions()
+    {
+        return $this->questions;
     }
 }

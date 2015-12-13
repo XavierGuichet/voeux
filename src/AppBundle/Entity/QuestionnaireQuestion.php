@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Reponse
+ * QuestionnaireQuestion
  *
- * @ORM\Table(name="reponse")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ReponseRepository")
+ * @ORM\Table(name="questionnaire_question")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\QuestionnaireQuestionRepository")
  */
-class Reponse
+class QuestionnaireQuestion
 {
     /**
      * @var int
@@ -20,27 +20,25 @@ class Reponse
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="Ordre", type="integer")
+     */
+    private $ordre;
     
     /**
-     * @ORM\OneToOne(targetEntity="XG\PeopleBundle\Entity\People", cascade={"persist"})
-     */
-    private $people;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Questionnaire")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Questionnaire",inversedBy="questions")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $questionnaire;
-
+    
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Question")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $question;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Choix")
-     */
-    private $choix;
-
 
     /**
      * Get id
@@ -53,27 +51,27 @@ class Reponse
     }
 
     /**
-     * Set people
+     * Set ordre
      *
-     * @param \XG\PeopleBundle\Entity\People $people
+     * @param integer $ordre
      *
-     * @return Reponse
+     * @return QuestionnaireQuestion
      */
-    public function setPeople(\XG\PeopleBundle\Entity\People $people = null)
+    public function setOrdre($ordre)
     {
-        $this->people = $people;
+        $this->ordre = $ordre;
 
         return $this;
     }
 
     /**
-     * Get people
+     * Get ordre
      *
-     * @return \XG\PeopleBundle\Entity\People
+     * @return integer
      */
-    public function getPeople()
+    public function getOrdre()
     {
-        return $this->people;
+        return $this->ordre;
     }
 
     /**
@@ -81,9 +79,9 @@ class Reponse
      *
      * @param \AppBundle\Entity\Questionnaire $questionnaire
      *
-     * @return Reponse
+     * @return QuestionnaireQuestion
      */
-    public function setQuestionnaire(\AppBundle\Entity\Questionnaire $questionnaire = null)
+    public function setQuestionnaire(\AppBundle\Entity\Questionnaire $questionnaire)
     {
         $this->questionnaire = $questionnaire;
 
@@ -105,9 +103,9 @@ class Reponse
      *
      * @param \AppBundle\Entity\Question $question
      *
-     * @return Reponse
+     * @return QuestionnaireQuestion
      */
-    public function setQuestion(\AppBundle\Entity\Question $question = null)
+    public function setQuestion(\AppBundle\Entity\Question $question)
     {
         $this->question = $question;
 
@@ -122,29 +120,5 @@ class Reponse
     public function getQuestion()
     {
         return $this->question;
-    }
-
-    /**
-     * Set choix
-     *
-     * @param \AppBundle\Entity\Choix $choix
-     *
-     * @return Reponse
-     */
-    public function setChoix(\AppBundle\Entity\Choix $choix = null)
-    {
-        $this->choix = $choix;
-
-        return $this;
-    }
-
-    /**
-     * Get choix
-     *
-     * @return \AppBundle\Entity\Choix
-     */
-    public function getChoix()
-    {
-        return $this->choix;
     }
 }

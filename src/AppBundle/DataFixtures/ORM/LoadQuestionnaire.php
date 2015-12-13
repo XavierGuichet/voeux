@@ -6,6 +6,8 @@ namespace OC\PlatformBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\Questionnaire;
+use AppBundle\Entity\QuestionnaireQuestion;
+use AppBundle\Entity\ContenuMail;
 use AppBundle\Entity\Question;
 use AppBundle\Entity\Choix;
 
@@ -15,6 +17,15 @@ class LoadQuestionnaire implements FixtureInterface
 
   public function load(ObjectManager $manager)
   {
+	//Contenu des mails
+	$ContenuMails[] = "Cette année pour nos voeux, Nous souhaitons vous faire plaisir. Pour y parvenir dites nous en plus  sur vous!";
+	$ContenuMails[] = "Variations texte 2. Cette année pour nos voeux, Nous souhaitons vous faire plaisir. Pour y parvenir dites nous en plus  sur vous!";
+	foreach ($ContenuMails as $ContenuMail) {
+		$ObjContenuMail = new ContenuMail();
+		$ObjContenuMail->setContenuTxt($ContenuMail);
+		$manager->persist($ObjContenuMail);
+	}
+	
     // Liste des choix
     $Questionnaires[] = array( "Titre"	  => "Rubrique 1",
 							  "Questions" => array( array("Chocolat","Barbe à papa"),
@@ -66,12 +77,15 @@ class LoadQuestionnaire implements FixtureInterface
     foreach ($Questionnaires as $Questionnaire) {
 		$ObjQuestionnaire = new Questionnaire();
 		$ObjQuestionnaire->setTitre($Questionnaire["Titre"]);
-		$manager->persist($ObjQuestionnaire);
 		
 		foreach($Questionnaire["Questions"] as $key => $Question) {
-			$ObjQuestion = new Question();
-			$ObjQuestion->addQuestionnaire($ObjQuestionnaire);
-			$ObjQuestion->setOrdre($key);
+			$ObjQuestionnaireQuestion = new QuestionnaireQuestion();			
+			$ObjQuestionnaireQuestion->setOrdre($key);			
+			$ObjQuestion = new Question();	
+								
+			$ObjQuestionnaireQuestion->setQuestionnaire($ObjQuestionnaire);	
+			$ObjQuestionnaireQuestion->setQuestion($ObjQuestion);	
+			
 			foreach($Question as $choix) {
 				$objChoix = new Choix();
 				$objChoix->setImagepath(slug_it($choix));
@@ -81,11 +95,14 @@ class LoadQuestionnaire implements FixtureInterface
 				$ObjQuestion->addChoix($objChoix);	
 			}
 			
+			$manager->persist($ObjQuestionnaireQuestion);			
 			$manager->persist($ObjQuestion);			
 		}
+		
+		$manager->persist($ObjQuestionnaire);
 
     }
-
+    
     $manager->flush();
   }
 
