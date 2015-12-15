@@ -11,3 +11,5 @@
 /bin/
 /composer.phar
 composer.lock
+sass/
+.sass-cache/
