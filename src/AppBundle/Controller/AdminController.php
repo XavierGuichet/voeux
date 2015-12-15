@@ -43,7 +43,7 @@ class AdminController extends Controller
 			 else {
 				 $civilité = "Chère ".$VoeuxPropose->getPeople()->getPrenom();
 			 }
-			 $link = $this->container->get('router')->generate('app_frontform', array('tokenmail' => $tokenmail), true);
+			 $link = $this->container->get('router')->generate('app_front_form', array('tokenmail' => $tokenmail), true);
 			 $mailcontent = array('link' => $link,
 								  'token' => $tokenmail,
 								  'civilite' => $civilité,

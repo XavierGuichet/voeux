@@ -5,20 +5,10 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
-//use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-
-use AppBundle\Entity\Reponse;
-use AppBundle\Entity\Question;
-use AppBundle\Entity\Choix;
 use AppBundle\Entity\Reponses;
-use AppBundle\Form\Type\ReponseType;
 use AppBundle\Form\Type\ReponsesType;
-use AppBundle\Form\Type\QuestionType;
-
-//use AppBundle\Form\Type\QuestionnaireType;
-//use XG\PeopleBundle\Form\Type\PeopleType;
-//use AppBundle\Form\Type\QuestionType;
 
 class FrontController extends Controller
 {
@@ -34,7 +24,7 @@ class FrontController extends Controller
     }
     
     /**
-     * @Route("/faites-vous-plaisir/{tokenmail}", name="app_frontform")
+     * @Route("/faites-vous-plaisir/{tokenmail}", name="app_front_form")
      */
     public function formAction($tokenmail, Request $request)
     {
@@ -47,8 +37,9 @@ class FrontController extends Controller
 			return $this->indexAction($request);
 		}
 		//Si deja repondu renvoi vers la page merci
-		if($VoeuxPropose->getIsAnswered()) {
-			return $this->indexAction($request);
+		if($VoeuxPropose->getIsAnswered() == true) {
+			$route = $this->container->get('router')->generate('app_front_merci');
+			return new RedirectResponse($route);
 		}
 
 		$reponses = new Reponses();
@@ -61,14 +52,23 @@ class FrontController extends Controller
 		$form->handleRequest($request);
 		if ($form->isValid()) {
 			$em->persist($reponses);
-			$VoeuxPropose->setIsAnswered(1);
+			$VoeuxPropose->setIsAnswered(true);
 			$em->persist($VoeuxPropose);			
 			$em->flush();
+			$route = $this->container->get('router')->generate('app_front_merci');
+			return new RedirectResponse($route);
 		}
-
 
 		return $this->render('AppBundle:Front:form.html.twig', array(
 		'form' => $form->createView()
 		));
     }
+    
+    /**
+     * @Route("/merci", name="app_front_merci")
+     */
+    public function merciAction()
+    {
+		return $this->render('AppBundle:Front:merci.html.twig');
+	}
 }

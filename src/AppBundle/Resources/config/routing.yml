@@ -6,6 +6,10 @@ app_frontpage:
     path:     /
     defaults: { _controller: AppBundle:Front:index }    
     
-app_frontform:
+app_front_form:
     path:     /faites-vous-plaisir/{tokenmail}
     defaults: { _controller: AppBundle:Front:form }
+    
+app_front_merci:
+    path:     /merci
+    defaults: { _controller: AppBundle:Front:merci }
