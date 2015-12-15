@@ -91,6 +91,7 @@ class Reponses
 			foreach($questionnaire->getQuestions() as $key => $question) {
 				$reponse = new Reponse();
 				$reponse->setQuestion($question->getQuestion());
+				$reponse->setReponses($this);
 				$this->addListreponse($reponse);
 			}
         return $this;
