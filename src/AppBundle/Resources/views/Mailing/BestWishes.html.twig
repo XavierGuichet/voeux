@@ -1,0 +1,59 @@
+{% extends "::baseMail.html.twig" %}
+
+{% set titleMail = "Faîtes vous plaisir" %}
+
+{% block title %} {{ parent() }} - {{ titleMail }}{% endblock %}
+
+
+{% block stylesheets %}                        
+    {{ parent() }}
+    {% include 'AppBundle:Mailing:_stylesheet.html.twig' %} 
+{% endblock %}
+
+{% block body %}
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="BGtable" bgcolor="#ffffff">
+	<tr>
+	  <td align="center">		
+                {% include 'AppBundle:Mailing:_top_header.html.twig' with { 'titleMail' : titleMail }%}                 
+                {% include 'AppBundle:Mailing:_header.html.twig' %} 
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0" style="margin: auto !important;" bgcolor="#DDDDDD">
+  <tr>
+        <td>
+           <table align="center" border="0" cellspacing="0" cellpadding="0" style="margin: auto !important;" width="620" bgcolor="#FFFFFF">
+                <tr>
+                    <td height="200" width="620">  
+                        <table align="center" border="0" cellspacing="0" cellpadding="0" style="margin: auto !important;" width="620" bgcolor="#FFFFFF">
+                            <tr> 
+                                <td width="20">
+                                
+                                </td>        
+                                <td width="580">
+									<p>
+										{{ civilite }}
+									</p>
+									<p>
+										{{ mailtexte }}
+									</p>
+                                    <p style="text-align:center;margin-bottom: 24px;">
+                                        <font style="color: #000000;font-size: 14px/24px;"  face="Arial, Helvetica, sans-serif" size="3" color="#20368b">
+                                            <center><a href="{{ link }}">{{ link }}</a></center>
+                                            </font>
+                                        </p>
+                                    <p>                                     
+                                </td>
+                                <td width="20">
+                                
+                                </td> 
+                            </tr>  
+                        </table>
+                    </td>
+                    
+            </table>
+        </td>        
+  </tr>
+</table>               
+                {% include 'AppBundle:Mailing:_footer.html.twig' %} 
+	  </td>
+	</tr>
+  </table>
+{% endblock %}

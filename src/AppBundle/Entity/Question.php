@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Question
@@ -22,17 +23,25 @@ class Question
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="Titre", type="string", length=255, nullable=true)
+     */
+    private $titre;
+    
+    /**
      * @var int
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Choix")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Choix", cascade={"persist"})
      */
     private $choixs;
+    
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->choixs = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->choixs = new ArrayCollection();
     }
 
     /**
@@ -77,5 +86,29 @@ class Question
     public function getChoixs()
     {
         return $this->choixs;
+    }
+
+    /**
+     * Set titre
+     *
+     * @param string $titre
+     *
+     * @return Question
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
     }
 }

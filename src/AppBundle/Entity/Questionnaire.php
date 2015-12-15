@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Questionnaire
@@ -73,7 +74,7 @@ class Questionnaire
      */
     public function __construct()
     {
-        $this->questions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->questions = new ArrayCollection();
     }
 
     /**

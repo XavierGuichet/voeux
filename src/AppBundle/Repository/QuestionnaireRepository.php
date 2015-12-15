@@ -10,4 +10,16 @@ namespace AppBundle\Repository;
  */
 class QuestionnaireRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function getAllQuestionnairesComplet() {
+		$qb = $this->createQueryBuilder('a')
+				   ->leftJoin('a.questions', 'QuestionnaireQuestion')
+				   ->addSelect('QuestionnaireQuestion')
+				   ->leftJoin('QuestionnaireQuestion.question', 'Question')
+				   ->addSelect('Question')
+				   ->leftJoin('Question.choixs', 'Choix')
+				   ->addSelect('Choix')
+				   ->add('orderBy','a.id ASC, QuestionnaireQuestion.ordre ASC');
+				
+		return $qb->getQuery()->getResult();		
+	}
 }

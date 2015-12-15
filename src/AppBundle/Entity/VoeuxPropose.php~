@@ -1,9 +1,9 @@
 <?php
-
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * VoeuxPropose
  *
@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class VoeuxPropose
 {
+	public function __construct() {
+		$this->dateEnvoi = new \Datetime();		
+		$this->isAnswered = 0;		
+	}
     /**
      * @var int
      *
@@ -25,23 +29,45 @@ class VoeuxPropose
      * @var \DateTime
      *
      * @ORM\Column(name="DateEnvoi", type="datetime")
+     * 
+     * @Assert\DateTime()
      */
     private $dateEnvoi;
 
     /**
 	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Questionnaire")
+	 * 
+	 * @Assert\Valid()
      */
     private $questionnaire;
 
     /**
 	 * @ORM\OneToOne(targetEntity="XG\PeopleBundle\Entity\People", cascade={"persist"})
+	 * 
+	 * @Assert\Valid()
      */
     private $people;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ContenuMail")
+     * 
+     * @Assert\Valid()
      */
     private $contenuMail;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="tokenmail", type="text")
+     */
+    private $tokenmail;
+
+    /**
+     * @var boolean
+     * 
+     * @ORM\Column(name="isanswered", type="boolean")
+     */
+    private $isAnswered;
 
 
     /**
@@ -220,5 +246,53 @@ class VoeuxPropose
     public function getContenuMail()
     {
         return $this->contenuMail;
+    }
+
+    /**
+     * Set tokenmail
+     *
+     * @param string $tokenmail
+     *
+     * @return VoeuxPropose
+     */
+    public function setTokenmail($tokenmail)
+    {
+        $this->tokenmail = $tokenmail;
+
+        return $this;
+    }
+
+    /**
+     * Get tokenmail
+     *
+     * @return string
+     */
+    public function getTokenmail()
+    {
+        return $this->tokenmail;
+    }
+
+    /**
+     * Set isAnswered
+     *
+     * @param boolean $isAnswered
+     *
+     * @return VoeuxPropose
+     */
+    public function setIsAnswered($isAnswered)
+    {
+        $this->isAnswered = $isAnswered;
+
+        return $this;
+    }
+
+    /**
+     * Get isAnswered
+     *
+     * @return boolean
+     */
+    public function getIsAnswered()
+    {
+        return $this->isAnswered;
     }
 }

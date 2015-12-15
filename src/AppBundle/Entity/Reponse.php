@@ -1,5 +1,4 @@
 <?php
-
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -20,16 +19,11 @@ class Reponse
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
-    /**
-     * @ORM\OneToOne(targetEntity="XG\PeopleBundle\Entity\People", cascade={"persist"})
-     */
-    private $people;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Questionnaire")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Reponses",inversedBy="listreponses")
      */
-    private $questionnaire;
+    private $reponses;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Question")
@@ -40,7 +34,6 @@ class Reponse
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Choix")
      */
     private $choix;
-
 
     /**
      * Get id
@@ -53,51 +46,27 @@ class Reponse
     }
 
     /**
-     * Set people
+     * Set reponses
      *
-     * @param \XG\PeopleBundle\Entity\People $people
+     * @param \AppBundle\Entity\Reponses $reponses
      *
      * @return Reponse
      */
-    public function setPeople(\XG\PeopleBundle\Entity\People $people = null)
+    public function setReponses(\AppBundle\Entity\Reponses $reponses = null)
     {
-        $this->people = $people;
+        $this->reponses = $reponses;
 
         return $this;
     }
 
     /**
-     * Get people
+     * Get reponses
      *
-     * @return \XG\PeopleBundle\Entity\People
+     * @return \AppBundle\Entity\Reponses
      */
-    public function getPeople()
+    public function getReponses()
     {
-        return $this->people;
-    }
-
-    /**
-     * Set questionnaire
-     *
-     * @param \AppBundle\Entity\Questionnaire $questionnaire
-     *
-     * @return Reponse
-     */
-    public function setQuestionnaire(\AppBundle\Entity\Questionnaire $questionnaire = null)
-    {
-        $this->questionnaire = $questionnaire;
-
-        return $this;
-    }
-
-    /**
-     * Get questionnaire
-     *
-     * @return \AppBundle\Entity\Questionnaire
-     */
-    public function getQuestionnaire()
-    {
-        return $this->questionnaire;
+        return $this->reponses;
     }
 
     /**
@@ -146,5 +115,29 @@ class Reponse
     public function getChoix()
     {
         return $this->choix;
+    }
+
+    /**
+     * Set titre
+     *
+     * @param string $titre
+     *
+     * @return Reponse
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
     }
 }

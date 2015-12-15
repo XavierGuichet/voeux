@@ -10,4 +10,22 @@ namespace AppBundle\Repository;
  */
 class VoeuxProposeRepository extends \Doctrine\ORM\EntityRepository
 {
+		public function getVoeuxCompletBytokenmail($tokenmail) {
+		$qb = $this->createQueryBuilder('v')
+				   ->leftJoin('v.questionnaire','Questionnaire')
+				   ->addSelect('Questionnaire')
+				   ->leftJoin('Questionnaire.questions', 'QuestionnaireQuestion')
+				   ->addSelect('QuestionnaireQuestion')
+				   ->leftJoin('QuestionnaireQuestion.question', 'Question')
+				   ->addSelect('Question')
+				   ->leftJoin('Question.choixs', 'Choix')
+				   ->addSelect('Choix')
+				   ->leftJoin('v.people', 'People')
+				   ->addSelect('People')
+				   ->Where('v.tokenmail = :id')
+				   ->setParameter('id', $tokenmail)
+				   ->add('orderBy','v.id ASC, QuestionnaireQuestion.ordre ASC');
+				
+		return $qb->getQuery()->getSingleResult();		
+	}
 }

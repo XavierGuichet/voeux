@@ -1,0 +1,83 @@
+{# src/AppBundle/Resources/views/Admin/index.html.twig #}
+
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block body %}
+    <header>
+		
+    </header>
+    
+    <section>
+		{{ form_start(form) }}
+			<div class="wrapper" style="border: 1px solid #ff00dd;">
+				<div class="row">
+					<fieldset>
+						<div class="row">
+							<legend>Le texte du mail</legend>
+						</div>
+						<div class="row">
+							<div class="sm-6">
+							{{ form_row(form.ContenuMail) }}
+							</div>
+							<div class="sm-6">
+								Texte 2
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="row">
+					<fieldset>
+						<div class="row">
+							<legend>Les choix proposés</legend>
+						</div>
+						<div class="row">
+							{{ form_label(form.questionnaire) }}
+							{{ form_widget(form.questionnaire) }}
+						</div>
+					</fieldset>
+				</div>
+				<div class="row">
+					<fieldset>
+						<div class="row">
+							<legend>Le client</legend>
+						</div>
+						<div class="row">
+							<div class="sm-6">
+								<div class="row">
+									{{ form_row(form.people) }}
+								</div>
+								
+								<div class="row">
+									<div class="sm-6">
+									</div>
+									<div class="sm-3">
+									</div>
+									<div class="sm-3">
+									</div>
+								</div>
+							</div>
+							<div class="sm-6">
+								<div class="row">
+								</div>
+								
+								<div class="row">
+								</div>
+								
+								<div class="row">
+									<div class="sm-3">
+									</div>
+									<div class="sm-9">
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				
+			</div>	
+		{{ form_end(form) }}			
+	</section>
+	
+
+{% endblock %}

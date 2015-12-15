@@ -1,0 +1,118 @@
+{# src/AppBundle/Resources/views/Admin/index.html.twig #}
+
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block body %}
+    <header>
+		
+    </header>
+    
+    <section>
+		{{ form_start(form) }}
+			<div class="wrapper" style="border: 1px solid #ff00dd;">
+				<div class="row">
+					<fieldset>
+						<div class="row">
+							<legend>Le texte du mail</legend>
+						</div>
+						<div class="row">
+							<div class="sm-6">
+							Texte 1
+							</div>
+							<div class="sm-6">
+								Texte 2
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="row">
+					<fieldset>
+						<div class="row">
+							<legend>Les choix proposés</legend>
+						</div>
+						<div class="row">
+							{% for questionnaire in questionnaires %}				
+								<div class="sm-2 {% if loop.first %}sm-offset-1{% endif %}">
+									<h3>{{questionnaire.titre}}</h3>
+									{% for question in questionnaire.questions %}	
+										<p>
+										{% for choix in question.question.choixs %}
+											<span>{{choix.titre}}{% if not loop.last %} / {% endif %}</span>
+										{% endfor %}
+										</p>
+									{% endfor %}
+								</div>
+							{% endfor %}
+							{{ form_label(form.questionnaire) }}
+							{{ form_widget(form.questionnaire) }}
+							{{ form_errors(form.questionnaire) }}
+						</div>
+					</fieldset>
+				</div>
+				<div class="row">
+					<fieldset>
+						<div class="row">
+							<legend>Le client</legend>
+						</div>
+						<div class="row">
+							<div class="sm-6">
+								<div class="row">
+									{{ form_label(form.societe) }}
+									{{ form_widget(form.societe) }}
+									{{ form_errors(form.societe) }}
+								</div>
+								
+								<div class="row">
+									<div class="sm-6">
+										{{ form_widget(form.ismale) }}
+										{{ form_errors(form.ismale) }}
+									</div>
+									<div class="sm-3">
+										{{ form_label(form.nom) }}
+										{{ form_widget(form.nom) }}
+										{{ form_errors(form.nom) }}
+									</div>
+									<div class="sm-3">
+										{{ form_label(form.prenom) }}
+										{{ form_widget(form.prenom) }}
+										{{ form_errors(form.prenom) }}
+									</div>
+								</div>
+							</div>
+							<div class="sm-6">
+								<div class="row">
+									{{ form_label(form.mail) }}
+									{{ form_widget(form.mail) }}
+									{{ form_errors(form.mail) }}
+								</div>
+								
+								<div class="row">
+									{{ form_label(form.adresse) }}
+									{{ form_widget(form.adresse) }}
+									{{ form_errors(form.adresse) }}
+								</div>
+								
+								<div class="row">
+									<div class="sm-3">
+										{{ form_label(form.codepostal) }}
+										{{ form_widget(form.codepostal) }}
+										{{ form_errors(form.codepostal) }}
+									</div>
+									<div class="sm-9">						
+										{{ form_label(form.ville) }}
+										{{ form_widget(form.ville) }}
+										{{ form_errors(form.ville) }}
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				
+			</div>	
+		{{ form_end(form) }}			
+	</section>
+	
+
+{% endblock %}

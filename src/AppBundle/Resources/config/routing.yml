@@ -1,0 +1,11 @@
+app_sendbestwishes:
+    path:     /sendbestwishesbykoba
+    defaults: { _controller: AppBundle:Admin:index }
+    
+app_frontpage:
+    path:     /
+    defaults: { _controller: AppBundle:Front:index }    
+    
+app_frontform:
+    path:     /faites-vous-plaisir/{tokenmail}
+    defaults: { _controller: AppBundle:Front:form }

@@ -4,11 +4,15 @@ namespace XG\PeopleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
  * People
  *
  * @ORM\Table(name="people")
  * @ORM\Entity(repositoryClass="XG\PeopleBundle\Repository\PeopleRepository")
+ * @UniqueEntity(fields="email", message="Cette adresse e-mail existe déjà.")
  */
 class People
 {
@@ -45,9 +49,10 @@ class People
     /**
      * @var string
      *
-     * @ORM\Column(name="Mail", type="string", length=255)
+     * @ORM\Column(name="eMail", type="string", length=255, unique=true)
+     * @Assert\Email(message="Cette adresse e-mail n'est pas valide.")
      */
-    private $mail;
+    private $email;
 
     /**
      * @var string
@@ -81,7 +86,7 @@ class People
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -89,27 +94,27 @@ class People
     }
 
     /**
-     * Set civilite
+     * Set ismale
      *
-     * @param string $civilite
+     * @param boolean $ismale
      *
      * @return People
      */
-    public function setCivilite($civilite)
+    public function setIsmale($ismale)
     {
-        $this->civilite = $civilite;
+        $this->ismale = $ismale;
 
         return $this;
     }
 
     /**
-     * Get civilite
+     * Get ismale
      *
-     * @return string
+     * @return boolean
      */
-    public function getCivilite()
+    public function getIsmale()
     {
-        return $this->civilite;
+        return $this->ismale;
     }
 
     /**
@@ -161,27 +166,27 @@ class People
     }
 
     /**
-     * Set mail
+     * Set email
      *
-     * @param string $mail
+     * @param string $email
      *
      * @return People
      */
-    public function setMail($mail)
+    public function setEmail($email)
     {
-        $this->mail = $mail;
+        $this->email = $email;
 
         return $this;
     }
 
     /**
-     * Get mail
+     * Get email
      *
      * @return string
      */
-    public function getMail()
+    public function getEmail()
     {
-        return $this->mail;
+        return $this->email;
     }
 
     /**
@@ -278,29 +283,5 @@ class People
     public function getSociete()
     {
         return $this->societe;
-    }
-
-    /**
-     * Set ismale
-     *
-     * @param boolean $ismale
-     *
-     * @return People
-     */
-    public function setIsmale($ismale)
-    {
-        $this->ismale = $ismale;
-
-        return $this;
-    }
-
-    /**
-     * Get ismale
-     *
-     * @return boolean
-     */
-    public function getIsmale()
-    {
-        return $this->ismale;
     }
 }
