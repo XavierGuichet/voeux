@@ -17,3 +17,7 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+    
+    locale: fr_FR
+    app_front_url: 'http://voeuxkoba.local'
+    online_mail_dir: /online/mail/

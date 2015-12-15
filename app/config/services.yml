@@ -7,3 +7,8 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+services:
+    mail_to_user:
+        class: AppBundle\Services\MailToUser
+        arguments: [@mailer, @templating, @router, %app_front_url%, @kernel]  
