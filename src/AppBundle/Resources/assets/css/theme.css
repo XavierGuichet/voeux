@@ -168,7 +168,416 @@ fieldset .button:hover {
   background: #CF7A7A;
 }
 
-/* line 9, ../../../../../sass/sass/theme.scss */
+/* line 18, ../../../../../sass/sass/theme.scss */
+img {
+  max-width: 100%;
+}
+
+/* line 22, ../../../../../sass/sass/theme.scss */
 body {
   font-family: "Lato","Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+}
+
+/* line 26, ../../../../../sass/sass/theme.scss */
+.main-bg {
+  background-image: url("/images/main-bg-mobile.jpg");
+  background-position: center bottom;
+  min-height: 750px;
+  background-size: cover;
+  position: relative;
+}
+
+/* line 33, ../../../../../sass/sass/theme.scss */
+.flexcontainer > div {
+  text-align: center;
+}
+
+/* line 36, ../../../../../sass/sass/theme.scss */
+.logokoba {
+  margin: 1.5em 0;
+  max-width: 150px;
+}
+
+/* line 40, ../../../../../sass/sass/theme.scss */
+.treatyourself {
+  margin: 3em 0 3em;
+  padding-right: 5%;
+  float: none;
+}
+
+/* line 46, ../../../../../sass/sass/theme.scss */
+.headtime {
+  display: inline-block;
+  text-indent: 2em;
+  line-height: 0.75em;
+  font-weight: 300;
+  font-size: 22px;
+  font-size: 1.375rem;
+  text-align: left;
+  color: #69676a;
+  margin: 3em 0;
+}
+/* line 56, ../../../../../sass/sass/theme.scss */
+.headtime__year {
+  color: #bc9118;
+  font-size: 88px;
+  font-size: 5.5rem;
+  font-weight: 100;
+  line-height: 0.75em;
+}
+
+/* line 64, ../../../../../sass/sass/theme.scss */
+.choice_label {
+  padding-bottom: 80%;
+  background: orange;
+  background-size: cover;
+}
+
+/* line 69, ../../../../../sass/sass/theme.scss */
+.choice_label:hover {
+  background-position: 0 100%;
+}
+
+/* line 73, ../../../../../sass/sass/theme.scss */
+img.vousetes {
+  position: absolute;
+  left: 50%;
+  margin-left: -118px;
+  top: 50%;
+  margin-top: -36px;
+}
+
+/* line 81, ../../../../../sass/sass/theme.scss */
+img.ou {
+  display: none;
+}
+
+/* line 84, ../../../../../sass/sass/theme.scss */
+.scroller {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  margin-left: -13px;
+  -webkit-transition: margin 1s ease;
+  /* Safari */
+  transition: margin 1s ease;
+}
+/* line 91, ../../../../../sass/sass/theme.scss */
+.scroller:hover {
+  margin-bottom: -16px;
+}
+
+/* line 96, ../../../../../sass/sass/theme.scss */
+input.hidden[type="radio"] {
+  display: none;
+}
+
+/* line 99, ../../../../../sass/sass/theme.scss */
+input[type="radio"]:checked + label {
+  background-position: 0 100%;
+}
+
+/* line 101, ../../../../../sass/sass/theme.scss */
+.reponse-block {
+  overflow: hidden;
+  position: relative;
+}
+
+/* line 106, ../../../../../sass/sass/theme.scss */
+.reponse-list {
+  width: 500%;
+}
+
+/* line 110, ../../../../../sass/sass/theme.scss */
+.reponse-item {
+  width: 20%;
+  float: left;
+  -webkit-transition: margin 1s ease;
+  /* Safari */
+  transition: margin 1s ease;
+}
+
+/* line 116, ../../../../../sass/sass/theme.scss */
+#slider-bar {
+  position: absolute;
+  bottom: 24px;
+  width: 100%;
+}
+
+/* line 121, ../../../../../sass/sass/theme.scss */
+.slide-bar-list {
+  list-style: none;
+  text-align: center;
+  width: 100%;
+}
+
+/* line 126, ../../../../../sass/sass/theme.scss */
+.slide-puce {
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+  background: url("/images/puce-slide.png");
+}
+/* line 131, ../../../../../sass/sass/theme.scss */
+.slide-puce.done {
+  background-position: 0 100%;
+}
+
+/* line 137, ../../../../../sass/sass/theme.scss */
+.js-slide-label, .js-slide-bar-btn {
+  cursor: pointer;
+}
+
+/* line 142, ../../../../../sass/sass/theme.scss */
+.profil {
+  background: #E4E4E4;
+}
+/* line 145, ../../../../../sass/sass/theme.scss */
+.profil-form-block {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  border-bottom: 1px solid #ffffff;
+  padding: 2em;
+}
+/* line 152, ../../../../../sass/sass/theme.scss */
+.profil-form-block > div {
+  padding: 0.5em;
+  flex: 1;
+  display: block;
+}
+/* line 157, ../../../../../sass/sass/theme.scss */
+.profil-form-block > div.flex-0 {
+  flex: 0;
+}
+/* line 162, ../../../../../sass/sass/theme.scss */
+.profil__intro {
+  color: #69676a;
+  font-size: 22px;
+  font-size: 1.375rem;
+  text-align: center;
+  padding: 2em;
+  border-bottom: 1px solid #ffffff;
+}
+/* line 169, ../../../../../sass/sass/theme.scss */
+.profil__intro > span {
+  color: #bc9118;
+  font-size: 36px;
+  font-size: 2.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+/* line 177, ../../../../../sass/sass/theme.scss */
+.profil .adresse input {
+  display: inline;
+  font-size: 18px;
+  font-size: 1.125rem;
+}
+/* line 181, ../../../../../sass/sass/theme.scss */
+.profil input {
+  width: 100%;
+  text-align: center;
+  font-size: 26px;
+  font-size: 1.625rem;
+  border: none;
+  border-bottom: 1px dashed #69676a;
+  background: none;
+  margin: 0 0 0.5rem;
+}
+/* line 190, ../../../../../sass/sass/theme.scss */
+.profil input.shiny {
+  font-weight: 700;
+  color: #bc9118;
+}
+/* line 195, ../../../../../sass/sass/theme.scss */
+.profil input[readonly="readonly"] {
+  border: none;
+  text-align: center;
+}
+
+/* line 200, ../../../../../sass/sass/theme.scss */
+.adresse-city {
+  width: 100%;
+}
+/* line 202, ../../../../../sass/sass/theme.scss */
+.adresse-city input {
+  width: auto;
+  text-align: left;
+}
+
+/* line 207, ../../../../../sass/sass/theme.scss */
+#reponses_people_codepostal {
+  width: 49.5%;
+  text-align: right;
+}
+
+/* line 211, ../../../../../sass/sass/theme.scss */
+#reponses_people_ville {
+  width: 49.5%;
+  text-align: left;
+}
+
+/* line 217, ../../../../../sass/sass/theme.scss */
+#reponses_save {
+  background: #bc9118;
+  font-size: 36px;
+  font-size: 2.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none;
+  text-align: center;
+  width: 100%;
+  padding: 1em;
+  color: #ffffff;
+}
+
+/* line 229, ../../../../../sass/sass/theme.scss */
+.remercie_1 {
+  display: inline-block;
+  font-size: 24px;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #bc9118;
+  line-height: 1.3em;
+  margin-bottom: 0.25em;
+}
+
+/* line 239, ../../../../../sass/sass/theme.scss */
+.remercie_2 {
+  display: inline-block;
+  font-size: 18px;
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: #69676a;
+  line-height: 1.3em;
+}
+
+/* line 247, ../../../../../sass/sass/theme.scss */
+.remercie_3 {
+  display: inline-block;
+  font-size: 18px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #bc9118;
+  line-height: 1.3em;
+  margin-bottom: 1.5em;
+}
+
+/* line 256, ../../../../../sass/sass/theme.scss */
+.remercie_4 {
+  display: inline-block;
+  font-size: 28px;
+  font-size: 1.75rem;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: #69676a;
+  line-height: 1.3em;
+}
+
+/* line 265, ../../../../../sass/sass/theme.scss */
+.remercie_5 {
+  display: inline-block;
+  font-size: 28px;
+  font-size: 1.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #bc9118;
+  line-height: 1.3em;
+  margin-bottom: 1.5em;
+}
+
+@media screen and (min-width: 800px) {
+  /* line 277, ../../../../../sass/sass/theme.scss */
+  .main-bg {
+    background-image: url("/images/main-bg.jpg");
+    background-position: center top;
+    background-size: 100% auto;
+    min-height: 0;
+  }
+
+  /* line 283, ../../../../../sass/sass/theme.scss */
+  .main-bg:before {
+    padding-bottom: 60.9%;
+    content: " ";
+    display: block;
+  }
+
+  /* line 288, ../../../../../sass/sass/theme.scss */
+  .flexcontainer {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+  }
+
+  /* line 297, ../../../../../sass/sass/theme.scss */
+  .logokoba {
+    padding-left: 5%;
+    max-width: 210px;
+  }
+
+  /* line 301, ../../../../../sass/sass/theme.scss */
+  .choice_label {
+    padding-bottom: 40%;
+  }
+
+  /* line 305, ../../../../../sass/sass/theme.scss */
+  img.vousetes {
+    position: absolute;
+    left: 50%;
+    margin-left: -118px;
+    top: 7%;
+    margin-top: 0;
+  }
+
+  /* line 312, ../../../../../sass/sass/theme.scss */
+  img.ou {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -16px;
+    margin-top: -10px;
+  }
+
+  /* line 324, ../../../../../sass/sass/theme.scss */
+  .profil-form-block {
+    border-bottom: none;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  /* line 329, ../../../../../sass/sass/theme.scss */
+  .profil__intro {
+    border-bottom: none;
+  }
+  /* line 332, ../../../../../sass/sass/theme.scss */
+  .profil input {
+    text-align: left;
+  }
+  /* line 335, ../../../../../sass/sass/theme.scss */
+  .profil input[readonly="readonly"] {
+    text-align: left;
+  }
+
+  /* line 339, ../../../../../sass/sass/theme.scss */
+  #reponses_people_codepostal {
+    width: 3.3em;
+    text-align: left;
+  }
+
+  /* line 343, ../../../../../sass/sass/theme.scss */
+  #reponses_people_ville {
+    width: calc(100% - 3.5em);
+    text-align: left;
+  }
+
+  /* line 347, ../../../../../sass/sass/theme.scss */
+  .flexcontainer .remercie {
+    text-align: left;
+    margin-top: 25em;
+  }
 }

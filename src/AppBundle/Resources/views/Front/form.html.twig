@@ -2,78 +2,118 @@
 
 {% extends "AppBundle::layout.html.twig" %}
 
+{% form_theme form _self %}
+
+{% block form_label %}
+     {% if label matches '/\.jpg/' %}     
+     <label for="{{ id }}" style="background-image: url('{{ label|raw }}')" class="choice_label sm-12 md-6 js-slide-label"></label>
+     {% endif %}
+{% endblock %}
+
+{% block radio_widget %}
+        <input type="radio" autocomplete="off"  class="hidden" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+{% endblock radio_widget %}
+
 {% block body %}
-    <header>
-		
+    <header class="row main-bg">
+		<div class="flexcontainer">
+			<div class="sm-12 md-3 lg-2 lg-push-1">
+				{% image '@AppBundle/Resources/assets/images/koba-logo.png' %}
+					<img src="{{ asset_url }}"  alt="Logo Koba" class="logokoba" />
+				{% endimage %}
+			</div>
+			<div class="sm-12 md-4 md-push-1 lg-push-2">
+				<p class="headtime">En <br/><span class="headtime__year">2016</span></p>
+			</div>
+			<div class="sm-12 md-4 md-push-1 lg-3 lg-push-2">
+				{% image '@AppBundle/Resources/assets/images/faitesvousplaisir.png' %}
+					<img src="{{ asset_url }}"  alt="Faîtes vous plaisir" class="sm-9 md-11 treatyourself" />
+				{% endimage %}
+			</div>
+			
+					{% image '@AppBundle/Resources/assets/images/scroller.png' %}
+						<img src="{{ asset_url }}"  alt=" " class="scroller" />
+					{% endimage %}
+			
+		</div>
     </header>
     
     <section>
 		{{ form_start(form) }}
-			<div style="border: 1px solid #ff00dd;">
-				<div class="row">
-					<fieldset>
-						<div class="row">
-							<legend>Le texte du mail</legend>
-						</div>
-						<div class="row">
-							<div class="sm-6">
+				<div class="row reponse-block">
+					<div class="reponse-list">
+						{% for reponse in form.listreponses %}
+							<div class="reponse-item">
+								{{ form_widget(reponse) }}
 							</div>
-							<div class="sm-6">
-								Texte 2
+						{% endfor %}
+					</div>
+					{% image '@AppBundle/Resources/assets/images/vousetesplutot.png' %}
+						<img src="{{ asset_url }}"  alt="Vous êtes plutot" class="vousetes" />
+					{% endimage %}
+					{% image '@AppBundle/Resources/assets/images/ou.png' %}
+						<img src="{{ asset_url }}"  alt="Ou" class="ou" />
+					{% endimage %}
+					<div id="slider-bar">
+						<ul class="slide-bar-list">
+						{% for reponse in form.listreponses %}
+							<li class="js-slide-bar-btn slide-puce"></li>
+						{% endfor %}
+						</ul>
+					</div>
+				</div>
+				<div class="row profil">
+					<div class="row">
+						<p class="profil__intro"><span>Vérifiez vos informations</span><br/> pour recevoir nos voeux</p>
+					</div>
+					<div class="row">
+						<div class="sm-12 md-6 md-offset-3">
+							<div class="sm-12 md-5 profil-form-block">
+								<div class="flex-0">
+									{% image '@AppBundle/Resources/assets/images/modifier.png' %}
+										<img src="{{ asset_url }}"  alt="Ou" class="js-edit-form" />
+									{% endimage %}
+								</div>
+								<div>
+								{{ form_widget(form.people.nom, {'attr': {'class': 'shiny','readonly' : 'readonly'}}) }}
+								{{ form_widget(form.people.prenom, {'attr': {'class': 'shiny','readonly' : 'readonly'}}) }}
+								</div>
+							</div>
+							<div class="sm-12 md-5 md-offset-2 profil-form-block">
+								<div class="flex-0">
+								{% image '@AppBundle/Resources/assets/images/modifier.png' %}
+									<img src="{{ asset_url }}"  alt="Ou" class="js-edit-form" />
+								{% endimage %}
+								</div>
+								<div>
+								{{ form_widget(form.people.societe, {'attr': {'class': 'shiny','readonly' : 'readonly'}}) }}
+								<div class="adresse">
+									{{ form_widget(form.people.adresse, {'attr': {'readonly' : 'readonly'}}) }}<br/>
+									<div class="adresse-city">
+										{{ form_widget(form.people.codepostal, {'attr': {'readonly' : 'readonly'}}) }}
+										{{ form_widget(form.people.ville, {'attr': {'readonly' : 'readonly'}}) }}
+									</div>
+								</div>
+								</div>
 							</div>
 						</div>
-					</fieldset>
+					</div>
 				</div>
 				<div class="row">
-					<fieldset>
-						<div class="row">
-							<legend>Les choix proposés</legend>
-						</div>
-						<div class="row">
-						</div>
-					</fieldset>
-				</div>
-				<div class="row">
-					<fieldset>
-						<div class="row">
-							<legend>Le client</legend>
-						</div>
-						<div class="row">
-							<div class="sm-6">
-								<div class="row">
-								</div>
-								
-								<div class="row">
-									<div class="sm-6">
-									</div>
-									<div class="sm-3">
-									</div>
-									<div class="sm-3">
-									</div>
-								</div>
-							</div>
-							<div class="sm-6">
-								<div class="row">
-								</div>
-								
-								<div class="row">
-								</div>
-								
-								<div class="row">
-									<div class="sm-3">
-									</div>
-									<div class="sm-9">
-									</div>
-								</div>
-								
-							</div>
-						</div>
-					</fieldset>
+					{{ form_widget(form.save) }}
 				</div>
 				
-			</div>	
-		{{ form_end(form) }}			
+				
 	</section>
 	
+{{ form_end(form) }}	
+{% endblock %}
 
+{% block javascript %}
+	{% javascripts 
+			'@AppBundle/Resources/assets/js/jquery-1.11.3.min.js'
+			'@AppBundle/Resources/assets/js/front.js'
+			 %}
+			<script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
 {% endblock %}

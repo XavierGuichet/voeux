@@ -81,3 +81,11 @@
 	
 
 {% endblock %}
+
+{% block javascript %}
+	{% javascripts 
+			'@AppBundle/Resources/assets/js/admin.js'
+			 %}
+			<script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+{% endblock %}

@@ -24,7 +24,7 @@ class ReponseType extends AbstractType
         $form->add("choix",EntityType::class, array(
 														'class' => 'AppBundle:Choix',
 														'choice_label' => function($choix) {
-																return $choix->getTitre();
+																return '/images/choix/'.$choix->getImagepath().'.jpg';
 															},
 														'choices' => $reponse->getQuestion()->getChoixs(),
 														'expanded' => true,

@@ -16,42 +16,97 @@
 	  <td align="center">		
                 {% include 'AppBundle:Mailing:_top_header.html.twig' with { 'titleMail' : titleMail }%}                 
                 {% include 'AppBundle:Mailing:_header.html.twig' %} 
-<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0" style="margin: auto !important;" bgcolor="#DDDDDD">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0" style="margin: auto !important;" bgcolor="#FFFFFF">
   <tr>
         <td>
-           <table align="center" border="0" cellspacing="0" cellpadding="0" style="margin: auto !important;" width="620" bgcolor="#FFFFFF">
+            <table align="center" border="0" cellspacing="0" cellpadding="0" style="margin: auto !important;" bgcolor="#20368b">
                 <tr>
-                    <td height="200" width="620">  
-                        <table align="center" border="0" cellspacing="0" cellpadding="0" style="margin: auto !important;" width="620" bgcolor="#FFFFFF">
-                            <tr> 
-                                <td width="20">
-                                
-                                </td>        
-                                <td width="580">
-									<p>
-										{{ civilite }}
-									</p>
-									<p>
-										{{ mailtexte }}
-									</p>
-                                    <p style="text-align:center;margin-bottom: 24px;">
-                                        <font style="color: #000000;font-size: 14px/24px;"  face="Arial, Helvetica, sans-serif" size="3" color="#20368b">
-                                            <center><a href="{{ link }}">{{ link }}</a></center>
-                                            </font>
-                                        </p>
-                                    <p>                                     
-                                </td>
-                                <td width="20">
-                                
-                                </td> 
-                            </tr>  
-                        </table>
-                    </td>
-                    
+                    <td height="177"></td>
+                </tr>
             </table>
-        </td>        
+        </td>
+        <td height="177" width="640">
+			<img src="{{ app_front_url }}/images/mailing/head_2.jpg" alt="">
+        </td> 
+        <td>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" style="margin: auto !important;" bgcolor="#20368b">
+                <tr>
+                <td height="177"></td>
+                </tr>
+            </table>
+        </td>         
   </tr>
-</table>               
+  <tr>
+        <td>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" style="margin: auto !important;" bgcolor="#20368b">
+                <tr>
+                    <td height="356"></td>
+                </tr>
+            </table>
+        </td>
+        <td height="356" width="640">
+			<img src="{{ app_front_url }}/images/mailing/content.jpg" alt="">
+        </td> 
+        <td>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" style="margin: auto !important;" bgcolor="#20368b">
+                <tr>
+                <td height="356"></td>
+                </tr>
+            </table>
+        </td>         
+  </tr>
+  <tr>
+        <td height="199">
+
+        </td>
+        <td height="199" width="640">			
+			<table align="center" border="0" cellspacing="0" cellpadding="0" style="margin: auto !important;" bgcolor="#FCFCFC">
+                <tr>
+					<td height="199" width="180">
+						<img src="{{ app_front_url }}/images/mailing/footer_left.jpg" alt="">
+					</td>
+					<td height="199" width="280">
+						<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0" style="margin: auto !important;" bgcolor="#FCFCFC">
+							  <tr>
+								<td height="140" width="280">
+									<p style="text-align:center;margin-bottom: 0px;">
+										<font style="color: #000000;font-size: 16px/24px;"  face="Arial, Helvetica, sans-serif" size="3" color="#20368b">
+											{{ civilite }}
+										</font>
+									</p>
+									<p style="text-align:center;margin-bottom: 0px;">
+										<font style="color: #000000;font-size: 14px/24px;"  face="Arial, Helvetica, sans-serif" size="3" color="#20368b">
+											{{ mailtexte }}
+										</font>
+									</p>								  
+									
+								</td>        
+							  </tr>
+							  <tr>
+								  <td height="50" width="280">
+											<center><a href="{{ link }}"><img src="{{ app_front_url }}/images/mailing/cta.png" alt=""></a></center>
+
+									</td>
+								</tr>
+							  <tr>
+								  <td height="9" width="280">
+
+									</td>
+								</tr>
+						</table> 
+					</td>
+					<td height="199" width="180">
+						<img src="{{ app_front_url }}/images/mailing/footer_right.jpg" alt="">
+					</td>
+                </tr>
+            </table>
+        </td> 
+        <td height="199">
+            
+        </td>         
+  </tr>
+</table>
+              
                 {% include 'AppBundle:Mailing:_footer.html.twig' %} 
 	  </td>
 	</tr>
