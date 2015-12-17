@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\FormError;
 
 
 use AppBundle\Entity\VoeuxPropose;
@@ -46,8 +47,8 @@ class AdminController extends Controller
                                   'civilite' => $civilité,
                                   'mailtexte' => $VoeuxPropose->getContenuMail()->getContenuTxt()
                                   );
-             
-                if(!preg_match('/@[freetouch\.fr|visibleo\.fr|koba\.com]{1}/',$VoeuxPropose->getEnvoyeurEmail())) {
+                dump($form);
+                if(preg_match('/@[freetouch\.fr|visibleo\.fr|koba\.com]{1}/',$VoeuxPropose->getEnvoyeurEmail())) {
                     $to = $VoeuxPropose->getPeople()->getEmail();
                     if (!$this->get('mail_to_user')->sendBestWishesEmail($to,$mailcontent,$VoeuxPropose->getEnvoyeurEmail())) {
                         throw $this->createNotFoundException('Unable to send Best Wishes mail.');
@@ -60,7 +61,7 @@ class AdminController extends Controller
                         $form = $this->createForm(VoeuxProposeType::class, new VoeuxPropose());
                     }
                 }
-                else{ $form->get('EnvoyeurEmail')->addError(new FormError('Cette adresse mail n\'est pas autorisé'));
+                else{ $form->get('envoyeurEmail')->addError(new FormError('Cette adresse mail n\'est pas autorisé'));}
          }
         
         return $this->render('AppBundle:Admin:index.html.twig', array(
