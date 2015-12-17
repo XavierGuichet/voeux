@@ -23,26 +23,26 @@ parameters:
     online_mail_dir: /online/mail/
 
     spe_mailer:
-         freetouch:
-             name: 'Freetouch'
-		     transport: 'smtp.freetouch.fr'
-             port: 587
-             encryption: TLS
-             username: 'cartevoeux@freetouch.fr'
-             password: 'fr33%Vo3u#'
+        freetouch:
+            name: 'Freetouch'
+            transport: 127.0.0.1
+            port: ~
+            encryption: ~
+            username: ~
+            password: ~
 
-         visibleo:
-             name: 'Visibleo'
-             transport: 'mail.visibleo.fr'
-             port: 587
-             encryption: TLS
-             username: 'cartevoeux@visibleo.fr'
-             password: 'yas8enuF'
+        visibleo:
+            name: 'Visibleo'
+            transport: 127.0.0.1
+            port: ~
+            encryption: ~
+            username: ~
+            password: ~
     
-         koba:
-             name: 'Koba'
-             transport: '213.56.206.19'
-             port: 26
-             encryption: null
-             username: 'cartevoeux@koba.com'
-             password: 'koba%c4rt3'
+        koba:
+            name: 'Koba'
+            transport: 127.0.0.1
+            port: ~
+            encryption: ~
+            username: ~
+            password: ~
