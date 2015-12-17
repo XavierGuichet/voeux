@@ -1,6 +1,6 @@
 {% extends "::baseMail.html.twig" %}
 
-{% set titleMail = "Faîtes vous plaisir" %}
+{% set titleMail = "Prolongez les fêtes avec Koba" %}
 
 {% block title %} {{ parent() }} - {{ titleMail }}{% endblock %}
 
@@ -26,7 +26,7 @@
             </table>
         </td>
         <td height="177" width="640">
-			<img src="{{ app_front_url }}/images/mailing/head_2.jpg" alt="">
+			<img src="{{ app_front_url }}/images/mailing/head_2.jpg" alt="En 2016, faîtes vous plaisir">
         </td> 
         <td>
             <table align="center" border="0" cellspacing="0" cellpadding="0" style="margin: auto !important;" bgcolor="#ffffff">
@@ -62,21 +62,21 @@
         <td height="199" width="640">			
 			<table align="center" border="0" cellspacing="0" cellpadding="0" style="margin: auto !important;" bgcolor="#FCFCFC">
                 <tr>
-					<td height="199" width="180">
+					<td height="199" width="165">
 						<img src="{{ app_front_url }}/images/mailing/footer_left.jpg" alt="">
 					</td>
-					<td height="199" width="280">
+					<td height="199" width="310">
 						<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0" style="margin: auto !important;" bgcolor="#FCFCFC">
 							  <tr>
-								<td height="140" width="280">
-									<p style="text-align:center;margin-bottom: 18px;">
-										<font style="color: #000000;font-size: 15px/24px;"  face="Helvetica, Arial, Verdana, sans-serif" size="3" color="#ffffff">
+								<td height="140" width="310">
+									<p style="text-align:center;margin-bottom: 12px;">
+										<font style="color: #000000;font-size: 15px/24px;"  face="Lato, Helvetica, Arial, Verdana, sans-serif" size="3" color="#ffffff">
 											{{ civilite }}
 										</font>
 									</p>
-									<p style="text-align:center;margin-bottom: 0px;">
-										<font style="color: #000000;font-size: 13px/24px;"  face="Helvetica, Arial, Verdana, sans-serif" size="3" color="#ffffff">
-											{{ mailtexte }}
+									<p style="text-align:center;margin-bottom: 6px;">
+										<font style="color: #000000;font-size: 13px/24px;"  face="Lato, Helvetica, Arial, Verdana, sans-serif" size="3" color="#ffffff">
+											{{ mailtexte|raw }}
 										</font>
 									</p>								  
 									
@@ -95,7 +95,7 @@
 								</tr>
 						</table> 
 					</td>
-					<td height="199" width="180">
+					<td height="199" width="165">
 						<img src="{{ app_front_url }}/images/mailing/footer_right.jpg" alt="">
 					</td>
                 </tr>
