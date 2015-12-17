@@ -66,7 +66,7 @@ class MailToUser {
             return false;
         
         // sujet
-        $subject = "Faîtes vous plaisir";
+        $subject = "Prolongez les fêtes avec Koba";
         
         return $this->sendMail($subject, $view, $to);
     }
