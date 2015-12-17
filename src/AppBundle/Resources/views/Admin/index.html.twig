@@ -2,25 +2,74 @@
 
 {% extends "AppBundle::layout.html.twig" %}
 
-{% block body %}
-    <header>
-		
-    </header>
-    
+{% form_theme form _self %} 
+
+{% block radio_widget %}
+	{% if id matches '/questionnaire/' %}
+		<input type="radio" class="hidden" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+	{% elseif id matches '/ContenuMail/' %}
+		<input type="radio" class="hidden" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+	{% else %}
+		<input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+	{% endif %}	
+{% endblock radio_widget %}
+
+{% block radio_label %}
+	{% if id matches '/ismale/' %}
+		<label for="{{ id }}">{{ label }}</label>
+   {% endif %}
+   {% if id matches '/questionnaire/' %}
+		<label for="{{ id }}" class="admin_choice sm-2">{{ label|raw }}</label>   
+   {% endif %}
+   {% if id matches '/ContenuMail/' %}
+		<label for="{{ id }}" class="admin_choice sm-4">{{ label|raw }}</label>   
+   {% endif %}
+{% endblock radio_label %}
+
+{% block form_errors %}
+    {% spaceless %}
+		{% for error in errors %}
+			<p class="form_error">{{ error.message }}</p>
+		{% endfor %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+{% block body %}    
     <section>
 		{{ form_start(form) }}
-			<div class="wrapper" style="border: 1px solid #ff00dd;">
+			<div class="wrapper">
+				<div class="row">
+				{% image '@AppBundle/Resources/assets/images/bandeaux.jpg' %}
+					<img src="{{ asset_url }}"  alt="Logo Koba" />
+				{% endimage %}
+				</div>
+				<div class="row">
+					{{ form_errors(form) }}
+					{% if not form_message is empty  %}
+						<p class="form_success">{{ form_message }}</p>
+					{% endif %}
+					
+				</div>
 				<div class="row">
 					<fieldset>
 						<div class="row">
-							<legend>Le texte du mail</legend>
+							<legend>Entrez vos coordonnées</legend>
 						</div>
 						<div class="row">
-							<div class="sm-6">
-							{{ form_row(form.ContenuMail) }}
+							<div class="sm-4">
+							{{ form_label(form.envoyeurNom, 'Nom') }}
+							{{ form_widget(form.envoyeurNom) }}
+							{{ form_errors(form.envoyeurNom) }}
 							</div>
-							<div class="sm-6">
-								Texte 2
+							<div class="sm-4">
+							{{ form_label(form.envoyeurPrenom, 'Prénom') }}
+							{{ form_widget(form.envoyeurPrenom) }}
+							{{ form_errors(form.envoyeurPrenom) }}
+							</div>
+							<div class="sm-4">								
+							{{ form_label(form.envoyeurEmail, 'Adresse mail') }}
+							{{ form_widget(form.envoyeurEmail) }}
+							{{ form_errors(form.envoyeurEmail) }}
 							</div>
 						</div>
 					</fieldset>
@@ -28,53 +77,91 @@
 				<div class="row">
 					<fieldset>
 						<div class="row">
-							<legend>Les choix proposés</legend>
+							<legend>Entrez les coordonnées de votre client</legend>
 						</div>
 						<div class="row">
-							{{ form_label(form.questionnaire) }}
-							{{ form_widget(form.questionnaire) }}
-						</div>
-					</fieldset>
-				</div>
-				<div class="row">
-					<fieldset>
-						<div class="row">
-							<legend>Le client</legend>
+									<div class="sm-4">
+										{{ form_label(form.people.societe, 'Société') }}
+										{{ form_widget(form.people.societe) }}
+										{{ form_errors(form.people.societe) }}
+									</div>
 						</div>
 						<div class="row">
-							<div class="sm-6">
+							<div class="sm-8 nopad">
 								<div class="row">
-									{{ form_row(form.people) }}
+									<div class="sm-4">
+										{{ form_label(form.people.ismale, 'Civilité') }}
+										{{ form_widget(form.people.ismale) }}
+										{{ form_errors(form.people.ismale) }}
+									</div>
+									<div class="sm-4">
+										{{ form_label(form.people.nom) }}
+										{{ form_widget(form.people.nom) }}
+										{{ form_errors(form.people.nom) }}
+									</div>
+									<div class="sm-4">
+										{{ form_label(form.people.prenom, 'Prénom') }}
+										{{ form_widget(form.people.prenom) }}
+										{{ form_errors(form.people.prenom) }}
+									</div>
+								</div>
+								
+								
+							</div>
+							<div class="sm-8">									
+									{{ form_label(form.people.email, 'Adresse mail') }}
+									{{ form_widget(form.people.email) }}
+									{{ form_errors(form.people.email) }}
+								</div>
+							<div class="sm-12 nopad">
+								<div class="row">
+									
 								</div>
 								
 								<div class="row">
 									<div class="sm-6">
+										{{ form_row(form.people.adresse) }}
 									</div>
-									<div class="sm-3">
+									<div class="sm-2">
+										{{ form_label(form.people.codepostal, 'Code Postal') }}
+										{{ form_widget(form.people.codepostal) }}
+										{{ form_errors(form.people.codepostal) }}
 									</div>
-									<div class="sm-3">
-									</div>
-								</div>
-							</div>
-							<div class="sm-6">
-								<div class="row">
-								</div>
-								
-								<div class="row">
-								</div>
-								
-								<div class="row">
-									<div class="sm-3">
-									</div>
-									<div class="sm-9">
+									<div class="sm-4">
+										{{ form_row(form.people.ville) }}
 									</div>
 								</div>
 								
 							</div>
 						</div>
 					</fieldset>
+				</div>				
+				<div class="row">
+					<fieldset>
+						<div class="row">
+							<legend>Choisissez le texte qui sera présent dans l'e-mailing envoyé à votre client</legend>
+						</div>
+						<div class="row">
+							<div class="sm-2">&nbsp;</div>
+							{{ form_widget(form.ContenuMail) }}
+							
+						</div>
+					</fieldset>
 				</div>
-				
+				<div class="row">
+					<fieldset>
+						<div class="row">
+							<legend>Choissisez les rubriques/ visuels qui correspondent à votre client</legend>
+						</div>
+						<div class="row">
+							<div class="sm-1">&nbsp;</div>
+							{{ form_widget(form.questionnaire) }}
+						</div>
+					</fieldset>
+				</div>	
+				<div class="row">
+					{{ form_widget(form.save) }}
+				</div>			
 			</div>	
 		{{ form_end(form) }}			
 	</section>

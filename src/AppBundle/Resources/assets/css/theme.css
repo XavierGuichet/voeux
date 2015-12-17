@@ -72,34 +72,38 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 fieldset {
   background: #F7F7F7;
   padding: 25px 15px 25px 10px;
-  color: #888;
+  color: #444;
   text-shadow: 1px 1px 1px #FFF;
   border: 1px solid #E4E4E4;
+  margin: 0.5em 0;
 }
 
-/* line 9, ../../../../../sass/sass/_form.scss */
+/* line 10, ../../../../../sass/sass/_form.scss */
 fieldset legend {
-  font-size: 25px;
+  font-size: 18px;
   padding: 0px 0px 10px 40px;
   display: block;
   border-bottom: 1px solid #E4E4E4;
   margin: -10px -15px 30px -10px;
-  color: #888;
+  color: #bc9118;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
-/* line 17, ../../../../../sass/sass/_form.scss */
+/* line 20, ../../../../../sass/sass/_form.scss */
 fieldset h1 > span {
   display: block;
   font-size: 11px;
 }
 
-/* line 21, ../../../../../sass/sass/_form.scss */
+/* line 24, ../../../../../sass/sass/_form.scss */
 fieldset label {
   display: block;
   margin: 0px;
+  margin-top: 1em;
 }
 
-/* line 25, ../../../../../sass/sass/_form.scss */
+/* line 29, ../../../../../sass/sass/_form.scss */
 fieldset label > span {
   float: left;
   width: 20%;
@@ -109,17 +113,17 @@ fieldset label > span {
   color: #888;
 }
 
-/* line 33, ../../../../../sass/sass/_form.scss */
+/* line 37, ../../../../../sass/sass/_form.scss */
 fieldset input[type="text"], fieldset input[type="email"], fieldset textarea, fieldset select {
   border: 1px solid #DADADA;
   color: #888;
   height: 30px;
-  margin-bottom: 16px;
+  margin-bottom: 0px;
   margin-right: 6px;
   margin-top: 2px;
   outline: 0 none;
   padding: 3px 3px 3px 5px;
-  width: 70%;
+  width: 100%;
   font-size: 12px;
   line-height: 15px;
   box-shadow: inset 0px 1px 4px #ECECEC;
@@ -127,12 +131,12 @@ fieldset input[type="text"], fieldset input[type="email"], fieldset textarea, fi
   -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
 }
 
-/* line 49, ../../../../../sass/sass/_form.scss */
+/* line 53, ../../../../../sass/sass/_form.scss */
 fieldset textarea {
   padding: 5px 3px 3px 5px;
 }
 
-/* line 52, ../../../../../sass/sass/_form.scss */
+/* line 56, ../../../../../sass/sass/_form.scss */
 fieldset select {
   background: #FFF url("down-arrow.png") no-repeat right;
   background: #FFF url("down-arrow.png") no-repeat right;
@@ -146,12 +150,12 @@ fieldset select {
   line-height: 25px;
 }
 
-/* line 64, ../../../../../sass/sass/_form.scss */
+/* line 68, ../../../../../sass/sass/_form.scss */
 fieldset textarea {
   height: 100px;
 }
 
-/* line 67, ../../../../../sass/sass/_form.scss */
+/* line 71, ../../../../../sass/sass/_form.scss */
 fieldset .button {
   background: #E27575;
   border: none;
@@ -163,9 +167,25 @@ fieldset .button {
   cursor: pointer;
 }
 
-/* line 77, ../../../../../sass/sass/_form.scss */
+/* line 81, ../../../../../sass/sass/_form.scss */
 fieldset .button:hover {
   background: #CF7A7A;
+}
+
+/* line 84, ../../../../../sass/sass/_form.scss */
+fieldset .form_error {
+  font-style: italic;
+  color: red;
+}
+
+/* line 88, ../../../../../sass/sass/_form.scss */
+.form_success {
+  text-align: center;
+  padding: 1em;
+  margin: 0.5em 0;
+  color: #fff;
+  background: green;
+  border: 1px solid lightgreen;
 }
 
 /* line 18, ../../../../../sass/sass/theme.scss */
@@ -418,7 +438,7 @@ input[type="radio"]:checked + label {
 }
 
 /* line 217, ../../../../../sass/sass/theme.scss */
-#reponses_save {
+#reponses_save, #voeux_propose_save {
   background: #bc9118;
   font-size: 36px;
   font-size: 2.25rem;
@@ -580,4 +600,46 @@ input[type="radio"]:checked + label {
     text-align: left;
     margin-top: 25em;
   }
+}
+/* line 354, ../../../../../sass/sass/theme.scss */
+#voeux_propose_people_ismale {
+  line-height: 30px;
+}
+
+/* line 357, ../../../../../sass/sass/theme.scss */
+#voeux_propose_people_ismale label {
+  display: inline-block;
+  margin: 0 0.75em 0 0.25em;
+}
+
+/* line 361, ../../../../../sass/sass/theme.scss */
+#voeux_propose_ContenuMail .admin_choice {
+  min-height: 84px;
+}
+
+/* line 364, ../../../../../sass/sass/theme.scss */
+#voeux_propose_questionnaire .admin_choice {
+  min-height: 180px;
+}
+
+/* line 367, ../../../../../sass/sass/theme.scss */
+.admin_choice {
+  padding: 1em;
+}
+
+/* line 371, ../../../../../sass/sass/theme.scss */
+.admin_choice:hover {
+  border: 1px solid #bc9118;
+}
+
+/* line 375, ../../../../../sass/sass/theme.scss */
+input[type="radio"]:checked + label.admin_choice {
+  background: #bc9118;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+/* line 380, ../../../../../sass/sass/theme.scss */
+.choix__item {
+  text-align: center;
 }

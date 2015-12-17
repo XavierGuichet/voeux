@@ -33,6 +33,27 @@ class VoeuxPropose
      * @Assert\DateTime()
      */
     private $dateEnvoi;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="envoyeurNom", type="string", length=255)
+     */
+    private $envoyeurNom;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="envoyeurPrenom", type="string", length=255)
+     */
+    private $envoyeurPrenom;
+    
+    /**
+     * @var string
+     * @ORM\Column(name="envoyeurEmail", type="string", length=255)
+     * @Assert\Email(message="Cette adresse e-mail n'est pas valide.")
+     */
+    private $envoyeurEmail;
 
     /**
 	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Questionnaire")

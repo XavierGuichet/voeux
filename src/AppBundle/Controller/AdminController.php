@@ -21,13 +21,10 @@ class AdminController extends Controller
     public function indexAction(Request $request)
     {
 		$em = $this->getDoctrine()->getManager();
+		$form_message = "";
 		$VoeuxPropose = new VoeuxPropose();
-				
-		/*$repositoryQuestionnaire = $em->getRepository('AppBundle\Entity\Questionnaire');		
-		$questionnaires = $repositoryQuestionnaire->getAllQuestionnairesComplet();*/
 		
 		$form = $this->createForm(VoeuxProposeType::class, $VoeuxPropose);
-		$form->add('save', 'submit', array('label' => 'Envoyer'));           
 		
 		$form->handleRequest($request);
          if ($form->isValid()) {
@@ -56,11 +53,16 @@ class AdminController extends Controller
 			}
                                 
 			$em->flush();
-             
+			
+			$form_message = "Voeux envoyées à ".$to;
+			//Nettoyage du form
+			unset($form);
+			$form = $this->createForm(VoeuxProposeType::class, new VoeuxPropose());
 		 }
 		
         return $this->render('AppBundle:Admin:index.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'form_message' => $form_message
             ));
     }
 }

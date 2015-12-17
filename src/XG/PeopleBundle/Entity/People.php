@@ -42,7 +42,7 @@ class People
     /**
      * @var string
      *
-     * @ORM\Column(name="Prenom", type="string", length=255, nullable=true)
+     * @ORM\Column(name="Prenom", type="string", length=255)
      */
     private $prenom;
 
@@ -65,6 +65,10 @@ class People
      * @var string
      *
      * @ORM\Column(name="Codepostal", type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *      max = 5,
+     *      maxMessage = "Le Code Postal ne peut pas dépassé {{ limit }} caractères"
+     * )
      */
     private $codepostal;
 

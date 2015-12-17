@@ -17,10 +17,8 @@ class FrontController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-        ));
+        $route = $this->container->get('router')->generate('app_front_merci');
+			return new RedirectResponse($route);
     }
     
     /**

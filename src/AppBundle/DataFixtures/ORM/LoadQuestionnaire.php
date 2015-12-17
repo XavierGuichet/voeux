@@ -18,8 +18,8 @@ class LoadQuestionnaire implements FixtureInterface
   public function load(ObjectManager $manager)
   {
 	//Contenu des mails
-	$ContenuMails[] = "Cette année pour nos voeux, Nous souhaitons vous faire plaisir. Pour y parvenir dites nous en plus  sur vous!";
-	$ContenuMails[] = "Variations texte 2. Cette année pour nos voeux, Nous souhaitons vous faire plaisir. Pour y parvenir dites nous en plus  sur vous!";
+	$ContenuMails[] = "Cette année Koba souhaite vous présenter des voeux personnalisés. Des voeux qui s’appuient sur ce que vous aimez.";
+	$ContenuMails[] = "Nous vous préparons une surprise en ce début d’année.";
 	foreach ($ContenuMails as $ContenuMail) {
 		$ObjContenuMail = new ContenuMail();
 		$ObjContenuMail->setContenuTxt($ContenuMail);

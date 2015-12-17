@@ -22,4 +22,16 @@ class QuestionnaireRepository extends \Doctrine\ORM\EntityRepository
 				
 		return $qb->getQuery()->getResult();		
 	}
+	public function getSelectList() {
+		$qb = $this->createQueryBuilder('a')
+				   ->leftJoin('a.questions', 'QuestionnaireQuestion')
+				   ->addSelect('QuestionnaireQuestion')
+				   ->leftJoin('QuestionnaireQuestion.question', 'Question')
+				   ->addSelect('Question')
+				   ->leftJoin('Question.choixs', 'Choix')
+				   ->addSelect('Choix')
+				   ->add('orderBy','a.id ASC, QuestionnaireQuestion.ordre ASC');
+				
+		return $qb;	
+	}
 }

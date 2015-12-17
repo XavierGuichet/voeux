@@ -22,8 +22,8 @@ class VoeuxProposeRepository extends \Doctrine\ORM\EntityRepository
 				   ->addSelect('Choix')
 				   ->leftJoin('v.people', 'People')
 				   ->addSelect('People')
-				   ->Where('v.tokenmail = :id')
-				   ->setParameter('id', $tokenmail)
+				   ->Where('v.tokenmail = :tok')
+				   ->setParameter('tok', $tokenmail)
 				   ->add('orderBy','v.id ASC, QuestionnaireQuestion.ordre ASC');
 				
 		return $qb->getQuery()->getSingleResult();		
