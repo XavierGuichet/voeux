@@ -37,16 +37,15 @@ class MailToUser {
 			$mailparam = $this->spe_mailer["koba"];
 		}
 		if(isset($mailparam)) {
-			$transport = \Swift_SmtpTransport::newInstance($mailparam["transport"],$mailparam["port"]);        
+			$transport = \Swift_SmtpTransport::newInstance($mailparam["host"],$mailparam["port"]);                         
 			$transport->setUsername($mailparam["username"]);
 			$transport->setPassword($mailparam["password"]);
-			$transport->setAuthMode('plain');        
+			$transport->setAuthMode($mailparam["authmode"]);        
 			$transport->setEncryption($mailparam["encryption"]);        
 			$this->mailer = \Swift_Mailer::newInstance($transport);
-			$this->from = $mailparam["username"];
-			$this->reply = $mailparam["username"];
+			$this->from = $mailparam["sender_address"];
+			$this->reply = $mailparam["sender_address"];
 			$this->name = $mailparam["name"];
-			dump($mailparam);
 			return true;
 		}
 		else {

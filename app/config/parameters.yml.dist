@@ -25,24 +25,33 @@ parameters:
     spe_mailer:
         freetouch:
             name: 'Freetouch'
-            transport: 127.0.0.1
+            transport: smtp
+            host: 127.0.0.1
             port: ~
+            authmode: ~
             encryption: ~
             username: ~
             password: ~
+            sender_address: ~
 
         visibleo:
             name: 'Visibleo'
-            transport: 127.0.0.1
+            transport: smtp
+            host: 127.0.0.1
             port: ~
+            authmode: ~
             encryption: ~
             username: ~
             password: ~
+            sender_address: ~
     
         koba:
             name: 'Koba'
-            transport: 127.0.0.1
+            transport: smtp
+            host: 127.0.0.1
             port: ~
+            authmode: ~
             encryption: ~
             username: ~
             password: ~
+            sender_address: ~
