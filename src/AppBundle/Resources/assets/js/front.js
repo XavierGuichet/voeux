@@ -6,6 +6,11 @@ $(document).ready( function($) {
 			pos++;
 			$(".reponse-item:lt("+pos+")").css("margin-left","-20%");		
 		}
+		else {
+			$('html, body').animate({
+				scrollTop:$("#profil").offset().top
+			}, 'slow');
+		}
 	});
 	$(".js-slide-bar-btn").click( function() {
 		pos = $(this).index();
