@@ -18,7 +18,7 @@ class LoadQuestionnaire implements FixtureInterface
   public function load(ObjectManager $manager)
   {
 	//Contenu des mails
-	$ContenuMails[] = "Cette année Koba souhaite vous présenter des voeux personnalisés. Des voeux qui s’appuient sur ce que vous aimez.";
+	$ContenuMails[] = "Cette année Koba souhaite<br/> vous présenter des voeux personnalisés.<br/> <strong>Des voeux qui s’appuient<br/> sur ce que vous aimez.</strong>";
 	$ContenuMails[] = "Nous vous préparons une surprise en ce début d’année.";
 	foreach ($ContenuMails as $ContenuMail) {
 		$ObjContenuMail = new ContenuMail();

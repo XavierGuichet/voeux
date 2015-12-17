@@ -34,19 +34,6 @@ class VoeuxPropose
      */
     private $dateEnvoi;
     
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="envoyeurNom", type="string", length=255, nullable=true)
-     */
-    private $envoyeurNom;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="envoyeurPrenom", type="string", length=255, nullable=true)
-     */
-    private $envoyeurPrenom;
     
     /**
      * @var string
@@ -315,54 +302,6 @@ class VoeuxPropose
     public function getIsAnswered()
     {
         return $this->isAnswered;
-    }
-
-    /**
-     * Set envoyeurNom
-     *
-     * @param string $envoyeurNom
-     *
-     * @return VoeuxPropose
-     */
-    public function setEnvoyeurNom($envoyeurNom)
-    {
-        $this->envoyeurNom = $envoyeurNom;
-
-        return $this;
-    }
-
-    /**
-     * Get envoyeurNom
-     *
-     * @return string
-     */
-    public function getEnvoyeurNom()
-    {
-        return $this->envoyeurNom;
-    }
-
-    /**
-     * Set envoyeurPrenom
-     *
-     * @param string $envoyeurPrenom
-     *
-     * @return VoeuxPropose
-     */
-    public function setEnvoyeurPrenom($envoyeurPrenom)
-    {
-        $this->envoyeurPrenom = $envoyeurPrenom;
-
-        return $this;
-    }
-
-    /**
-     * Get envoyeurPrenom
-     *
-     * @return string
-     */
-    public function getEnvoyeurPrenom()
-    {
-        return $this->envoyeurPrenom;
     }
 
     /**

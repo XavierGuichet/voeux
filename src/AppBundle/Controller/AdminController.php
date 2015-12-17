@@ -48,16 +48,16 @@ class AdminController extends Controller
 								  );
 			 
 			$to = $VoeuxPropose->getPeople()->getEmail();
-			if (!$this->get('mail_to_user')->sendBestWishesEmail($to,$mailcontent)) {
+			if (!$this->get('mail_to_user')->sendBestWishesEmail($to,$mailcontent,$VoeuxPropose->getEnvoyeurEmail())) {
 				throw $this->createNotFoundException('Unable to send Best Wishes mail.');
 			}
-                                
-			$em->flush();
-			
-			$form_message = "Voeux envoyées à ".$to;
-			//Nettoyage du form
-			unset($form);
-			$form = $this->createForm(VoeuxProposeType::class, new VoeuxPropose());
+			else {                                
+				//$em->flush();			
+				$form_message = "Voeux envoyées à ".$to;
+				//Nettoyage du form
+				//unset($form);
+				//$form = $this->createForm(VoeuxProposeType::class, new VoeuxPropose());
+			}
 		 }
 		
         return $this->render('AppBundle:Admin:index.html.twig', array(

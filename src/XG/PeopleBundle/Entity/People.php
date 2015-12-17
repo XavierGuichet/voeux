@@ -36,6 +36,7 @@ class People
      * @var string
      *
      * @ORM\Column(name="Nom", type="string", length=255)
+     * @Assert\NotBlank(message="Ce champ est obligatoire.")
      */
     private $nom;
 
@@ -43,6 +44,7 @@ class People
      * @var string
      *
      * @ORM\Column(name="Prenom", type="string", length=255)
+     * @Assert\NotBlank(message="Ce champ est obligatoire.")
      */
     private $prenom;
 
@@ -57,14 +59,15 @@ class People
     /**
      * @var string
      *
-     * @ORM\Column(name="Adresse", type="string", length=255, nullable=true)
+     * @ORM\Column(name="Adresse", type="string", length=255)
+     * @Assert\NotBlank(message="Ce champ est obligatoire.")
      */
     private $adresse;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Codepostal", type="string", length=255, nullable=true)
+     * @ORM\Column(name="Codepostal", type="string", length=255)
      * @Assert\Length(
      *      max = 5,
      *      maxMessage = "Le Code Postal ne peut pas dépassé {{ limit }} caractères"
@@ -75,14 +78,16 @@ class People
     /**
      * @var string
      *
-     * @ORM\Column(name="Ville", type="string", length=255, nullable=true)
+     * @ORM\Column(name="Ville", type="string", length=255)
+     * @Assert\NotBlank(message="Ce champ est obligatoire.")
      */
     private $ville;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Societe", type="string", length=255, nullable=true)
+     * @ORM\Column(name="Societe", type="string", length=255)
+     * @Assert\NotBlank(message="Ce champ est obligatoire.")
      */
     private $societe;
 

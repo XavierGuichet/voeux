@@ -8,25 +8,59 @@ use Assetic\Exception\Exception;
 
 
 class MailToUser {
-
-    protected $mailer;
     protected $router;
     protected $templating;
     protected $app_front_url;
+    protected $spe_mailer;
     protected $kernel;
-    private $from = "voeux@koba.fr";
-    private $reply = "voeux@koba.fr";
-    private $name = "Koba Global Services";
+    private $mailer;
+    private $from;
+    private $reply;
+    private $name;
 
-    public function __construct($mailer, EngineInterface $templating, RouterInterface $router, $app_front_url, $kernel) {
-        $this->mailer = $mailer;
+    public function __construct(EngineInterface $templating, RouterInterface $router, $app_front_url, $kernel, $spe_mailer) {
         $this->router = $router;
         $this->templating = $templating;
         $this->app_front_url = $app_front_url;
+        $this->spe_mailer = $spe_mailer;
         $this->kernel = $kernel;
     }
+    
+    public function prepareMailer($mailfrom) {
+		if(preg_match('/@freetouch.fr/',$mailfrom)) {
+			$mailparam = $this->spe_mailer["freetouch"];
+		}
+		if(preg_match('/@visibleo.fr/',$mailfrom)) {
+			$mailparam = $this->spe_mailer["visibleo"];
+		}
+		if(preg_match('/@koba.com/',$mailfrom)) {
+			$mailparam = $this->spe_mailer["koba"];
+		}
+		if(isset($mailparam)) {
+			$transport = \Swift_SmtpTransport::newInstance($mailparam["transport"],$mailparam["port"]);        
+			$transport->setUsername($mailparam["username"]);
+			$transport->setPassword($mailparam["password"]);
+			$transport->setAuthMode('plain');        
+			$transport->setEncryption($mailparam["encryption"]);        
+			$this->mailer = \Swift_Mailer::newInstance($transport);
+			$this->from = $mailparam["username"];
+			$this->reply = $mailparam["username"];
+			$this->name = $mailparam["name"];
+			dump($mailparam);
+			return true;
+		}
+		else {
+			return false;
+		}
+		
+	}
        
-    public function sendBestWishesEmail($to,$mailcontent){
+    public function sendBestWishesEmail($to,$mailcontent,$from){
+		if(!$this->prepareMailer($from)) {
+			throw $this->createNotFoundException('Adresse mail non admise');
+		}
+		
+		
         $view = null;
         $view = $this->templating->render('AppBundle:Mailing:BestWishes.html.twig', $mailcontent);
         if (!$view)
@@ -39,7 +73,6 @@ class MailToUser {
     }
     
     private function sendMail($subject, $view, $to){
-                
         //$view = $this->createOnlineVersion($view);
         
         // pour utiliser la fonction php mail à la place du smtp

@@ -601,45 +601,50 @@ input[type="radio"]:checked + label {
     margin-top: 25em;
   }
 }
-/* line 354, ../../../../../sass/sass/theme.scss */
+/* line 353, ../../../../../sass/sass/theme.scss */
+strong {
+  font-weight: 700;
+}
+
+/* line 357, ../../../../../sass/sass/theme.scss */
 #voeux_propose_people_ismale {
   line-height: 30px;
 }
 
-/* line 357, ../../../../../sass/sass/theme.scss */
+/* line 360, ../../../../../sass/sass/theme.scss */
 #voeux_propose_people_ismale label {
   display: inline-block;
   margin: 0 0.75em 0 0.25em;
 }
 
-/* line 361, ../../../../../sass/sass/theme.scss */
+/* line 364, ../../../../../sass/sass/theme.scss */
 #voeux_propose_ContenuMail .admin_choice {
   min-height: 84px;
 }
 
-/* line 364, ../../../../../sass/sass/theme.scss */
+/* line 367, ../../../../../sass/sass/theme.scss */
 #voeux_propose_questionnaire .admin_choice {
   min-height: 180px;
 }
 
-/* line 367, ../../../../../sass/sass/theme.scss */
+/* line 370, ../../../../../sass/sass/theme.scss */
 .admin_choice {
   padding: 1em;
 }
 
-/* line 371, ../../../../../sass/sass/theme.scss */
+/* line 374, ../../../../../sass/sass/theme.scss */
 .admin_choice:hover {
   border: 1px solid #bc9118;
 }
 
-/* line 375, ../../../../../sass/sass/theme.scss */
+/* line 378, ../../../../../sass/sass/theme.scss */
 input[type="radio"]:checked + label.admin_choice {
   background: #bc9118;
   color: #ffffff;
   text-shadow: none;
 }
 
-/* line 380, ../../../../../sass/sass/theme.scss */
+/* line 383, ../../../../../sass/sass/theme.scss */
 .choix__item {
   text-align: center;
 }

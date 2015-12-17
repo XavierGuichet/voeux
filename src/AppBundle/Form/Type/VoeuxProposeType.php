@@ -17,8 +17,6 @@ class VoeuxProposeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {	
-		$builder->add('envoyeurNom');
-		$builder->add('envoyeurPrenom');
 		$builder->add('envoyeurEmail',EmailType::class);
 		 $builder->add('people', PeopleType::class);
 		 $builder->add('questionnaire',EntityType::class, array(
