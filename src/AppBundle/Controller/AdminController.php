@@ -47,7 +47,7 @@ class AdminController extends Controller
                                   'civilite' => $civilité,
                                   'mailtexte' => $VoeuxPropose->getContenuMail()->getContenuTxt()
                                   );
-                dump($form);
+                                  
                 if(preg_match('/@[freetouch\.fr|visibleo\.fr|koba\.com]{1}/',$VoeuxPropose->getEnvoyeurEmail())) {
                     $to = $VoeuxPropose->getPeople()->getEmail();
                     if (!$this->get('mail_to_user')->sendBestWishesEmail($to,$mailcontent,$VoeuxPropose->getEnvoyeurEmail())) {
