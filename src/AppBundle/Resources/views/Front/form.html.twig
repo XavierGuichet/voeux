@@ -6,7 +6,7 @@
 
 {% block form_label %}
      {% if label matches '/\.jpg/' %}     
-     <label for="{{ id }}" style="background-image: url('{{ label|raw }}')" class="choice_label sm-12 md-6 js-slide-label"></label>
+     <label for="{{ id }}" style="background-image: url('{{ asset(label|raw) }}')" class="choice_label sm-12 md-6 js-slide-label"></label>
      {% endif %}
 {% endblock %}
 
@@ -18,22 +18,16 @@
     <header class="row main-bg">
         <div class="flexcontainer">
             <div class="sm-12 md-3 lg-2 lg-push-1">
-                {% image '@AppBundle/Resources/assets/images/koba-logo.png' %}
-                    <img src="{{ asset_url }}"  alt="Logo Koba" class="logokoba" />
-                {% endimage %}
+                <img src="{{ asset('images/koba-logo.png') }}"  alt="Logo Koba" class="logokoba" />                
             </div>
             <div class="sm-12 md-4 md-push-1">
                 <p class="headtime">En <br/><span class="headtime__year">2016</span></p>
             </div>
             <div class="sm-12 md-4 md-push-1">
-                {% image '@AppBundle/Resources/assets/images/faitesvousplaisir.png' %}
-                    <img src="{{ asset_url }}"  alt="Faîtes vous plaisir" class="sm-9 md-11 treatyourself" />
-                {% endimage %}
+                <img src="{{ asset('images/faitesvousplaisir.png') }}"  alt="Faîtes vous plaisir" class="sm-9 md-11 treatyourself" />                
             </div>
             
-                    {% image '@AppBundle/Resources/assets/images/scroller.png' %}
-                        <img src="{{ asset_url }}"  alt=" " class="scroller" />
-                    {% endimage %}
+                    <img src="{{ asset('images/scroller.png') }}"  alt=" " class="scroller" />                    
             
         </div>
     </header>
@@ -48,12 +42,8 @@
                             </div>
                         {% endfor %}
                     </div>
-                    {% image '@AppBundle/Resources/assets/images/vousetesplutot.png' %}
-                        <img src="{{ asset_url }}"  alt="Vous êtes plutot" class="vousetes" />
-                    {% endimage %}
-                    {% image '@AppBundle/Resources/assets/images/ou.png' %}
-                        <img src="{{ asset_url }}"  alt="Ou" class="ou" />
-                    {% endimage %}
+                    <img src="{{ asset('images/vousetesplutot.png') }}"  alt="Vous êtes plutot" class="vousetes" />                  
+                    <img src="{{ asset('images/ou.png') }}"  alt="Ou" class="ou" />                  
                     <div id="slider-bar">
                         <ul class="slide-bar-list">
                         {% for reponse in form.listreponses %}
@@ -70,9 +60,7 @@
                         <div class="sm-12 md-6 md-offset-3">
                             <div class="sm-12 md-5 profil-form-block">
                                 <div class="flex-0">
-                                    {% image '@AppBundle/Resources/assets/images/modifier.png' %}
-                                        <img src="{{ asset_url }}"  alt="Ou" class="js-edit-form" />
-                                    {% endimage %}
+                                <img src="{{ asset('images/modifier.png') }}"  alt="Ou" class="js-edit-form" />                                    
                                 </div>
                                 <div>
                                 {{ form_widget(form.people.nom, {'attr': {'class': 'shiny','readonly' : 'readonly'}}) }}
@@ -81,9 +69,7 @@
                             </div>
                             <div class="sm-12 md-5 md-offset-2 profil-form-block">
                                 <div class="flex-0">
-                                {% image '@AppBundle/Resources/assets/images/modifier.png' %}
-                                    <img src="{{ asset_url }}"  alt="Ou" class="js-edit-form" />
-                                {% endimage %}
+                                <img src="{{ asset('images/modifier.png') }}"  alt="Ou" class="js-edit-form" />                               
                                 </div>
                                 <div>
                                 {{ form_widget(form.people.societe, {'attr': {'class': 'shiny','readonly' : 'readonly'}}) }}
@@ -110,10 +96,6 @@
 {% endblock %}
 
 {% block javascript %}
-    {% javascripts 
-            '@AppBundle/Resources/assets/js/jquery-1.11.3.min.js'
-            '@AppBundle/Resources/assets/js/front.js'
-             %}
-            <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    <script src="{{ asset('js/jquery-1.11.3.min.js') }}"></script>
+    <script src="{{ asset('js/front.js') }}"></script>
 {% endblock %}

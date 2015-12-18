@@ -20,13 +20,11 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         
         <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
-        {% stylesheets '/css/*' filter='cssrewrite' output='css/main.min.css'
-            '@AppBundle/Resources/assets/css/normalize.css' 
-            '@AppBundle/Resources/assets/css/xggrid.css'             
-            '@AppBundle/Resources/assets/css/theme.css'            
-            %}
-            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
-        {% endstylesheets %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('css/normalize.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/xggrid.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/theme.css') }}" /> 
+        {% endblock %}
     </head>
     <body class="{% block bodyclass %}{% endblock %}">
     

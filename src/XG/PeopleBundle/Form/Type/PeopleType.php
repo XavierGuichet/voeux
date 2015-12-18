@@ -20,7 +20,7 @@ class PeopleType extends AbstractType
 				->add('ville');
 				
 		if($options['displayall']) {
-		$builder->add('ismale',ChoiceType::class,array(
+		$builder->add('ismale',new ChoiceType(),array(
 							'placeholder' => false,
 							'choices' => array('Madame' => false, 'Monsieur' => true),
 							'choices_as_values' => true,

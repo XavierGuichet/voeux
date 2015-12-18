@@ -39,9 +39,7 @@
 		{{ form_start(form) }}
 			<div class="wrapper">
 				<div class="row">
-				{% image '@AppBundle/Resources/assets/images/bandeaux.jpg' %}
-					<img src="{{ asset_url }}"  alt="Logo Koba" />
-				{% endimage %}
+				<img src="{{ asset('images/bandeaux.jpg') }}"  alt="Logo Koba" />
 				</div>
 				<div class="row">
 					{{ form_errors(form) }}
@@ -164,9 +162,5 @@
 {% endblock %}
 
 {% block javascript %}
-	{% javascripts 
-			'@AppBundle/Resources/assets/js/admin.js'
-			 %}
-			<script src="{{ asset_url }}"></script>
-	{% endjavascripts %}
+    <script src="{{ asset('js/admin.js') }}"></script>
 {% endblock %}

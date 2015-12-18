@@ -16,13 +16,13 @@ class ReponsesType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {			
-		$builder->add('people',PeopleType::class,array('displayall' => false));
+		$builder->add('people',new PeopleType(),array('displayall' => false));
 		
 		$t = $options["data"]->getListreponses();
-		$builder->add('listreponses', CollectionType::class, array(
-																'entry_type'   => ReponseType::class										
-																)
-			);
+		$builder->add('listreponses', new CollectionType(), array(
+                    'entry_type'   => new ReponseType()										
+                    )
+                );
     }
 
 	

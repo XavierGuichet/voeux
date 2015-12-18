@@ -17,28 +17,28 @@ class VoeuxProposeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {	
-		$builder->add('envoyeurEmail',EmailType::class);
-		 $builder->add('people', PeopleType::class);
-		 $builder->add('questionnaire',EntityType::class, array(
-														'class' => 'AppBundle:Questionnaire',
-														'choice_label' => function($questionnaire) {
-															return displayQuestions($questionnaire);
-															},
-														'query_builder' => function(\AppBundle\Repository\QuestionnaireRepository $er) { 
-															return $er->getSelectList();
-														},
-														'expanded' => true,
-														'multiple' => false
-														)
-							);
-		 $builder->add('ContenuMail',EntityType::class, array(
-														'class' => 'AppBundle:ContenuMail',
-														'choice_label' => 'contenuTxt',
-														'expanded' => true,
-														'multiple' => false
-														)
-							);
-		$builder->add('save', 'submit', array('label' => 'Envoyer'));
+        $builder->add('envoyeurEmail','email');
+        $builder->add('people', new PeopleType());
+        $builder->add('questionnaire','entity', array(
+            'class' => 'AppBundle:Questionnaire',
+            'choice_label' => function($questionnaire) {
+                    return displayQuestions($questionnaire);
+                    },
+            'query_builder' => function(\AppBundle\Repository\QuestionnaireRepository $er) { 
+                    return $er->getSelectList();
+            },
+            'expanded' => true,
+            'multiple' => false
+            )
+        );
+        $builder->add('ContenuMail','entity', array(
+            'class' => 'AppBundle:ContenuMail',
+            'choice_label' => 'contenuTxt',
+            'expanded' => true,
+            'multiple' => false
+            )
+        );
+        $builder->add('save', 'submit', array('label' => 'Envoyer'));
     }
 
 	

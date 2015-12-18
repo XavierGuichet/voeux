@@ -17,21 +17,21 @@ class ReponseType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {												
-		$builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
         $reponse = $event->getData();	
         $form = $event->getForm();
         
-        $form->add("choix",EntityType::class, array(
-														'class' => 'AppBundle:Choix',
-														'choice_label' => function($choix) {
-																return '/images/choix/'.$choix->getImagepath().'.jpg';
-															},
-														'choices' => $reponse->getQuestion()->getChoixs(),
-														'expanded' => true,
-														'multiple' => false
-														)
-													);
-		});										
+        $form->add("choix",'entity', array(
+                'class' => 'AppBundle:Choix',
+                'choice_label' => function($choix) {
+                                return 'images/choix/'.$choix->getImagepath().'.jpg';
+                },
+                'choices' => $reponse->getQuestion()->getChoixs(),
+                'expanded' => true,
+                'multiple' => false
+                )
+            );
+        });										
     }
 
 	
