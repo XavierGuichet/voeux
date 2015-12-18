@@ -28,28 +28,28 @@ class MailToUser {
     
     public function prepareMailer($mailfrom) {
         if(preg_match('/@freetouch.fr/',$mailfrom)) {
-            $mailparam = $this->spe_mailer["freetouch"];
+                $mailparam = $this->spe_mailer["freetouch"];
         }
         if(preg_match('/@visibleo.fr/',$mailfrom)) {
-            $mailparam = $this->spe_mailer["visibleo"];
+                $mailparam = $this->spe_mailer["visibleo"];
         }
         if(preg_match('/@koba.com/',$mailfrom)) {
-            $mailparam = $this->spe_mailer["koba"];
+                $mailparam = $this->spe_mailer["koba"];
         }
         if(isset($mailparam)) {
-            $transport = \Swift_SmtpTransport::newInstance($mailparam["transport"],$mailparam["port"]);        
-            $transport->setUsername($mailparam["username"]);
-            $transport->setPassword($mailparam["password"]);
-            $transport->setAuthMode($mailparam["authmode"]);
-            $transport->setEncryption($mailparam["encryption"]);
-            $this->mailer = \Swift_Mailer::newInstance($transport);
-            $this->from = $mailparam["username"];
-            $this->reply = $mailparam["username"];
-            $this->name = $mailparam["name"];
-            return true;
+                $transport = \Swift_SmtpTransport::newInstance($mailparam["host"],$mailparam["port"]);                         
+                $transport->setUsername($mailparam["username"]);
+                $transport->setPassword($mailparam["password"]);
+                $transport->setAuthMode($mailparam["authmode"]);        
+                $transport->setEncryption($mailparam["encryption"]);        
+                $this->mailer = \Swift_Mailer::newInstance($transport);
+                $this->from = $mailparam["sender_address"];
+                $this->reply = $mailparam["sender_address"];
+                $this->name = $mailparam["name"];
+                return true;
         }
         else {
-            return false;
+                return false;
         }
         
     }
