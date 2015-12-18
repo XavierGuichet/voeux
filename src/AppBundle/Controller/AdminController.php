@@ -25,7 +25,7 @@ class AdminController extends Controller
         $form_message = "";
         $VoeuxPropose = new VoeuxPropose();
         
-        $form = $this->createForm(VoeuxProposeType::class, $VoeuxPropose);
+        $form = $this->createForm(new VoeuxProposeType(), $VoeuxPropose);
         
         $form->handleRequest($request);
          if ($form->isValid()) {
@@ -58,7 +58,7 @@ class AdminController extends Controller
                         $form_message = "Voeux envoyées à ".$to;
                         //Nettoyage du form
                         unset($form);
-                        $form = $this->createForm(VoeuxProposeType::class, new VoeuxPropose());
+                        $form = $this->createForm(new VoeuxProposeType(), new VoeuxPropose());
                     }
                 }
                 else{ $form->get('envoyeurEmail')->addError(new FormError('Cette adresse mail n\'est pas autorisé'));}
