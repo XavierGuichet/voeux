@@ -44,7 +44,7 @@ class FrontController extends Controller
 		$reponses->setPeople($VoeuxPropose->getPeople());
 		$reponses->setQuestionnaire($VoeuxPropose->getQuestionnaire());
 
-		$form = $this->createForm(ReponsesType::class, $reponses);	
+		$form = $this->createForm(new ReponsesType(), $reponses);	
 		$form->add('save', 'submit', array('label' => 'Envoyer'));	
 
 		$form->handleRequest($request);
