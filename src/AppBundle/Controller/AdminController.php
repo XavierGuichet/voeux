@@ -82,7 +82,12 @@ class AdminController extends Controller
        
        $handle = fopen('php://memory', 'r+');
        $header = array();
-
+        
+        //Ajoute une ligne de titre au fichier
+        $titlecsv = array('Expediteur','Questionnaire repondu','Société','Nom','Prénom','Email','Adresse','Code postal','Ville','Titre questionnaire','Reponse 1','Reponse 2','Reponse 3','Reponse 4','Reponse 5');
+        fputcsv($handle, $titlecsv);
+        
+        //Ajoute toutes les demandes, celles répondues d'abord
         foreach($listVoeux as $Voeux) {
             
             
