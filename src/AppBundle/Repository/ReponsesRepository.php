@@ -10,4 +10,24 @@ namespace AppBundle\Repository;
  */
 class ReponsesRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getReponseByPeopleId($id) {
+        $qb = $this->createQueryBuilder('r')
+                   ->leftJoin('r.questionnaire','Questionnaire')
+                   ->addSelect('Questionnaire')
+                   ->leftJoin('Questionnaire.questions', 'QuestionnaireQuestion')
+                   ->addSelect('QuestionnaireQuestion')
+                   ->leftJoin('QuestionnaireQuestion.question', 'Question')
+                   ->addSelect('Question')
+                   ->leftJoin('r.listreponses', 'Reponse')
+                   ->addSelect('Reponse')
+                   ->leftJoin('Reponse.choix', 'Choix')
+                   ->addSelect('Choix')
+                   ->Where('r.people = :people')
+                   ->setParameter('people', $id)
+                   ->add('orderBy','QuestionnaireQuestion.ordre ASC');
+                
+        return $qb->getQuery()->getSingleResult();
+        
+        
+    }
 }

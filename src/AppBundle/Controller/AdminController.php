@@ -6,7 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormError;
-
+use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Entity\VoeuxPropose;
 use AppBundle\Entity\Questionnaire;
@@ -68,5 +68,55 @@ class AdminController extends Controller
             'form' => $form->createView(),
             'form_message' => $form_message
             ));
+    }
+    
+    /**
+     * @Route("/exportcsv", name="app_export_csv")
+     */
+    public function exportcsvAction() {
+       $em = $this->getDoctrine()->getManager();
+       $repositoryVoeux = $em->getRepository('AppBundle\Entity\VoeuxPropose');
+       $repositoryReponses = $em->getRepository('AppBundle\Entity\Reponses');
+       
+       $listVoeux = $repositoryVoeux->getAllVoeuxPeople();
+       
+       $handle = fopen('php://memory', 'r+');
+       $header = array();
+
+        foreach($listVoeux as $Voeux) {
+            
+            
+            $identification = array($Voeux->getEnvoyeurEmail(),
+                             $Voeux->getIsAnswered(),
+                             $Voeux->getPeople()->getSociete(),
+                             $Voeux->getPeople()->getNom(),
+                             $Voeux->getPeople()->getPrenom(),
+                             $Voeux->getPeople()->getEmail(),
+                             $Voeux->getPeople()->getAdresse(),
+                             $Voeux->getPeople()->getCodepostal(),
+                             $Voeux->getPeople()->getVille(),
+                             $Voeux->getQuestionnaire()->getTitre(),
+                             );
+                             
+            $reponses = array();
+            if($Voeux->getIsAnswered()) {
+                $reponse = $repositoryReponses->getReponseByPeopleId($Voeux->getPeople()->getId());
+                foreach($reponse->getListreponses() as $reponse_item) {
+                    $reponses[] = $reponse_item->getChoix()->getTitre();
+                }
+            }
+            $lignecsv = array_merge ($identification,$reponses);
+            fputcsv($handle, $lignecsv);
+        }
+
+        rewind($handle);
+        $content = stream_get_contents($handle);
+        fclose($handle);
+        
+        return new Response($content, 200, array(
+            'Content-Type' => 'application/force-download',
+            'Content-Disposition' => 'attachment; filename="export.csv"'
+        ));
+        
     }
 }

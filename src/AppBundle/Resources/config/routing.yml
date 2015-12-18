@@ -1,15 +1,28 @@
-app_sendbestwishes:
-    path:     /sendbestwishesbykoba
-    defaults: { _controller: AppBundle:Admin:index }
-    
 app_frontpage:
     path:     /
-    defaults: { _controller: AppBundle:Front:index }    
+    defaults: { _controller: AppBundle:Front:index }
     
+#formulaire client
 app_front_form:
     path:     /faites-vous-plaisir/{tokenmail}
     defaults: { _controller: AppBundle:Front:form }
     
+#post soumission form
 app_front_merci:
     path:     /merci
     defaults: { _controller: AppBundle:Front:merci }
+
+
+
+
+
+
+#page d'administration
+app_sendbestwishes:
+    path:     /sendbestwishesbykoba
+    defaults: { _controller: AppBundle:Admin:index }
+    
+#listing info csv
+app_export_csv:
+    path:     /exportcsv
+    defaults: { _controller: AppBundle:Admin:exportcsv }
