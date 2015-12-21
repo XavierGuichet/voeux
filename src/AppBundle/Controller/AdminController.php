@@ -48,7 +48,7 @@ class AdminController extends Controller
                                   'mailtexte' => $VoeuxPropose->getContenuMail()->getContenuTxt()
                                   );
 
-                if(preg_match('/@(freetouch\.fr|visibleo\.fr|koba\.com)$/',$VoeuxPropose->getEnvoyeurEmail())) {
+                if(preg_match('/@(freetouch\.fr|visibleo\.fr|koba\.com){1}$/',$VoeuxPropose->getEnvoyeurEmail())) {
                     $to = $VoeuxPropose->getPeople()->getEmail();
                     if (!$this->get('mail_to_user')->sendBestWishesEmail($to,$mailcontent,$VoeuxPropose->getEnvoyeurEmail())) {
                         throw $this->createNotFoundException('Unable to send Best Wishes mail.');
