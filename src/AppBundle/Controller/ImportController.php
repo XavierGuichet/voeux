@@ -39,6 +39,7 @@ class ImportController extends Controller
      */
     public function check_validityAction(Request $request) {
       $table = array();
+      $form_message = "";
       $em = $this->getDoctrine()->getManager();
       $repositoryQuestionnaire = $em->getRepository('AppBundle\Entity\Questionnaire');
       $repositoryContenuMail = $em->getRepository('AppBundle\Entity\ContenuMail');
@@ -122,12 +123,14 @@ class ImportController extends Controller
                }
           }
           $em->flush();
+          $form_message = "Soumission réussie";
         }
       }
 
       return $this->render('AppBundle:Import:checkvalidity.html.twig', array(
         'form' => $form->createView(),
-        'table_check' => $table
+        'table_check' => $table,
+        'form_message' => $form_message
       ));
     }
 

@@ -16,6 +16,11 @@
               {{ form_errors(form) }}
             {{ form_end(form) }}
           </div>
+          <div class="sm-12">
+            {% if not form_message is empty  %}
+              <p class="form_success">{{ form_message }}</p>
+            {% endif %}
+          </div>
         </div>
       </div>
       <div class="row">
