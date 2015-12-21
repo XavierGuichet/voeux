@@ -135,7 +135,7 @@ class People
      */
     public function setNom($nom)
     {
-        $this->nom = $nom;
+        $this->nom = mb_strtoupper($nom);
 
         return $this;
     }
@@ -147,7 +147,7 @@ class People
      */
     public function getNom()
     {
-        return $this->nom;
+        return mb_strtoupper($this->nom);
     }
 
     /**
@@ -207,7 +207,7 @@ class People
      */
     public function setAdresse($adresse)
     {
-        $this->adresse = $adresse;
+        $this->adresse = mb_strtoupper($adresse);
 
         return $this;
     }
@@ -219,7 +219,7 @@ class People
      */
     public function getAdresse()
     {
-        return $this->adresse;
+        return mb_strtoupper($this->adresse);
     }
 
     /**
@@ -255,7 +255,7 @@ class People
      */
     public function setVille($ville)
     {
-        $this->ville = $ville;
+        $this->ville = mb_strtoupper($ville);
 
         return $this;
     }
@@ -267,7 +267,7 @@ class People
      */
     public function getVille()
     {
-        return $this->ville;
+        return mb_strtoupper($this->ville);
     }
 
     /**
@@ -279,7 +279,7 @@ class People
      */
     public function setSociete($societe)
     {
-        $this->societe = $societe;
+        $this->societe = mb_strtoupper($societe);
 
         return $this;
     }
@@ -291,6 +291,6 @@ class People
      */
     public function getSociete()
     {
-        return $this->societe;
+        return mb_strtoupper($this->societe);
     }
 }
