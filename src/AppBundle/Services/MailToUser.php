@@ -25,7 +25,7 @@ class MailToUser {
         $this->spe_mailer = $spe_mailer;
         $this->kernel = $kernel;
     }
-    
+
     public function prepareMailer($mailfrom) {
         if(preg_match('/@freetouch.fr/',$mailfrom)) {
                 $mailparam = $this->spe_mailer["freetouch"];
@@ -37,54 +37,54 @@ class MailToUser {
                 $mailparam = $this->spe_mailer["koba"];
         }
         if(isset($mailparam)) {
-                $transport = \Swift_SmtpTransport::newInstance($mailparam["host"],$mailparam["port"]);                         
+                $transport = \Swift_SmtpTransport::newInstance($mailparam["host"],$mailparam["port"]);
                 $transport->setUsername($mailparam["username"]);
                 $transport->setPassword($mailparam["password"]);
-                $transport->setAuthMode($mailparam["authmode"]);        
-                $transport->setEncryption($mailparam["encryption"]);        
+                $transport->setAuthMode($mailparam["authmode"]);
+                $transport->setEncryption($mailparam["encryption"]);
                 $this->mailer = \Swift_Mailer::newInstance($transport);
-                $this->from = $mailparam["sender_address"];
-                $this->reply = $mailparam["sender_address"];
+                $this->from = $mailfrom;
+                $this->reply = $mailfrom;
                 $this->name = $mailparam["name"];
                 return true;
         }
         else {
                 return false;
         }
-        
+
     }
-       
+
     public function sendBestWishesEmail($to,$mailcontent,$from){
         if(!$this->prepareMailer($from)) {
             throw new \Exception('Adresse mail non admise');
         }
-        
-        
+
+
         $view = null;
         $view = $this->templating->render('AppBundle:Mailing:BestWishes.html.twig', $mailcontent);
         if (!$view)
             return false;
-        
+
         // sujet
         $subject = "Prolongez les fêtes avec Koba";
-        
+
         return $this->sendMail($subject, $view, $to);
     }
-    
+
     private function sendMail($subject, $view, $to){
         //$view = $this->createOnlineVersion($view);
-        
+
         // pour utiliser la fonction php mail à la place du smtp
         //$transport = \Swift_MailTransport::newInstance();
         //$this->mailer = \Swift_Mailer::newInstance($transport);
-        
+
         $mail = \Swift_Message::newInstance()
                 ->setSubject($subject)
                 ->setFrom($this->from, $this->name)
                 ->setBody($view)
                 ->setReplyTo($this->reply, $this->name)
                 ->setContentType('text/html');
-        
+
         try {
             $mail->setTo($to);
             $this->mailer->send($mail);
@@ -94,22 +94,22 @@ class MailToUser {
 
         return true;
     }
-    
-    private function createOnlineVersion($view){        
+
+    private function createOnlineVersion($view){
         $filename = md5(uniqid(null, true).date("YmdHis"));
         $filenameWithExt = $filename.".dat";
-        
+
         // variables dynamiques
         $lien_version_online = $this->app_front_url.$this->router->generate('front_online_version', array('type' => 'mail', 'hash' => $filename));
-        $newView = str_replace('#LIEN_ONLINE#',$lien_version_online, $view);        
-        
+        $newView = str_replace('#LIEN_ONLINE#',$lien_version_online, $view);
+
         // traitement du fichier justificatif
         $dir=$this->kernel->getRootDir()."/../web/".$this->kernel->getContainer()->getParameter('online_mail_dir');
 
         if (!is_dir($dir)) { mkdir($dir); }
-        
+
         file_put_contents($dir.$filenameWithExt, $newView);
-        
+
         return $newView;
     }
 }
