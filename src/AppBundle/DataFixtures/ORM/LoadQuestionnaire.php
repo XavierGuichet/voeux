@@ -18,14 +18,14 @@ class LoadQuestionnaire implements FixtureInterface
   public function load(ObjectManager $manager)
   {
 	//Contenu des mails
-	$ContenuMails[] = "Cette année Koba souhaite<br/> vous présenter des voeux personnalisés.<br/> <strong>Des voeux qui s’appuient<br/> sur ce que vous aimez.</strong>";
+	$ContenuMails[] = "Cette année Koba et ses filiales souhaitent<br/> vous présenter des voeux personnalisés.<br/> <strong>Des voeux qui s’appuient<br/> sur ce que vous aimez.</strong>";
 	$ContenuMails[] = "Nous vous préparons une surprise en ce début d’année.";
 	foreach ($ContenuMails as $ContenuMail) {
 		$ObjContenuMail = new ContenuMail();
 		$ObjContenuMail->setContenuTxt($ContenuMail);
 		$manager->persist($ObjContenuMail);
 	}
-	
+
     // Liste des choix
     $Questionnaires[] = array( "Titre"	  => "Rubrique 1",
 							  "Questions" => array( array("Chocolat","Barbe à papa"),
@@ -71,38 +71,38 @@ class LoadQuestionnaire implements FixtureInterface
 													array("La barbade","Les Cyclades")
 													)
 							);
-	
+
 
 
     foreach ($Questionnaires as $Questionnaire) {
 		$ObjQuestionnaire = new Questionnaire();
 		$ObjQuestionnaire->setTitre($Questionnaire["Titre"]);
-		
+
 		foreach($Questionnaire["Questions"] as $key => $Question) {
-			$ObjQuestionnaireQuestion = new QuestionnaireQuestion();			
-			$ObjQuestionnaireQuestion->setOrdre($key);			
-			$ObjQuestion = new Question();	
-								
-			$ObjQuestionnaireQuestion->setQuestionnaire($ObjQuestionnaire);	
-			$ObjQuestionnaireQuestion->setQuestion($ObjQuestion);	
-			
+			$ObjQuestionnaireQuestion = new QuestionnaireQuestion();
+			$ObjQuestionnaireQuestion->setOrdre($key);
+			$ObjQuestion = new Question();
+
+			$ObjQuestionnaireQuestion->setQuestionnaire($ObjQuestionnaire);
+			$ObjQuestionnaireQuestion->setQuestion($ObjQuestion);
+
 			foreach($Question as $choix) {
 				$objChoix = new Choix();
 				$objChoix->setImagepath(slug_it($choix));
 				$objChoix->setTitre($choix);
-				
-				$manager->persist($objChoix);	
-				$ObjQuestion->addChoix($objChoix);	
+
+				$manager->persist($objChoix);
+				$ObjQuestion->addChoix($objChoix);
 			}
-			
-			$manager->persist($ObjQuestionnaireQuestion);			
-			$manager->persist($ObjQuestion);			
+
+			$manager->persist($ObjQuestionnaireQuestion);
+			$manager->persist($ObjQuestion);
 		}
-		
+
 		$manager->persist($ObjQuestionnaire);
 
     }
-    
+
     $manager->flush();
   }
 
@@ -285,11 +285,10 @@ function slug_it($str, $replace=array(), $delimiter='-') {
 		$str = str_replace((array)$replace, ' ', $str);
 	}
 	// $clean = iconv('UTF-8', 'ASCII//TRANSLIT', $str);
-	
+
 	$clean = remove_accents($str);
 	$clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $clean);
 	$clean = strtolower(trim($clean, '-'));
 	$clean = preg_replace("/[\/_|+ -]+/", $delimiter, $clean);
 	return $clean;
 }
-
