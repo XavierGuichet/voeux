@@ -162,8 +162,9 @@ class ImportController extends Controller
                 }
               }
       }
-      if($row[0] == "Raison Sociale") { return false;}
+      if(count($row) == 0) { return false;}
       if(count($row) != 11) { return "Bad cell count";}
+      if($row[0] == "Raison Sociale") { return false;}
 
       $VoeuxPropose = new VoeuxPropose();
       $Questionnaire = new Questionnaire();
