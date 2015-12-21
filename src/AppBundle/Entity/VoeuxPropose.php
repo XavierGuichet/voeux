@@ -13,8 +13,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class VoeuxPropose
 {
 	public function __construct() {
-		$this->dateEnvoi = new \Datetime();		
-		$this->isAnswered = 0;		
+		$this->dateEnvoi = new \Datetime();
+		$this->isAnswered = 0;
 	}
     /**
      * @var int
@@ -29,12 +29,12 @@ class VoeuxPropose
      * @var \DateTime
      *
      * @ORM\Column(name="DateEnvoi", type="datetime")
-     * 
+     *
      * @Assert\DateTime()
      */
     private $dateEnvoi;
-    
-    
+
+
     /**
      * @var string
      * @ORM\Column(name="envoyeurEmail", type="string", length=255)
@@ -44,35 +44,35 @@ class VoeuxPropose
 
     /**
 	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Questionnaire")
-	 * 
+	 *
 	 * @Assert\Valid()
      */
     private $questionnaire;
 
     /**
 	 * @ORM\OneToOne(targetEntity="XG\PeopleBundle\Entity\People", cascade={"persist"})
-	 * 
+	 *
 	 * @Assert\Valid()
      */
     private $people;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ContenuMail")
-     * 
+     *
      * @Assert\Valid()
      */
     private $contenuMail;
 
     /**
      * @var string
-     * 
+     *
      * @ORM\Column(name="tokenmail", type="text")
      */
     private $tokenmail;
 
     /**
      * @var boolean
-     * 
+     *
      * @ORM\Column(name="isanswered", type="boolean")
      */
     private $isAnswered;
@@ -110,30 +110,6 @@ class VoeuxPropose
     public function getDateEnvoi()
     {
         return $this->dateEnvoi;
-    }
-
-    /**
-     * Set groupeChoixId
-     *
-     * @param integer $groupeChoixId
-     *
-     * @return VoeuxPropose
-     */
-    public function setGroupeChoixId($groupeChoixId)
-    {
-        $this->groupeChoixId = $groupeChoixId;
-
-        return $this;
-    }
-
-    /**
-     * Get groupeChoixId
-     *
-     * @return int
-     */
-    public function getGroupeChoixId()
-    {
-        return $this->groupeChoixId;
     }
 
     /**
