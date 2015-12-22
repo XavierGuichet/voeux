@@ -10,4 +10,12 @@ namespace AppBundle\Repository;
  */
 class ContenuMailRepository extends \Doctrine\ORM\EntityRepository
 {
+  public function findTexteWithStrong() {
+    $qb = $this->createQueryBuilder('c');
+    $qb->where(
+                      $qb->expr()->like('c.contenuTxt', ':strong')
+                  )
+               ->setParameter('strong','%strong%');
+    return $qb->getQuery()->getSingleResult();
+   }
 }
