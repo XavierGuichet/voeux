@@ -680,3 +680,7 @@ input[type="radio"]:checked + label.admin_choice {
 #import td.ok {
   background: #00dd00;
 }
+#import form ul li {
+  font-weight: 700;
+  color: red;  
+}

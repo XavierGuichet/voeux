@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Goodby\CSV\Import\Standard\Interpreter;
 use Goodby\CSV\Import\Standard\Lexer;
 use Goodby\CSV\Import\Standard\LexerConfig;
@@ -48,10 +48,10 @@ class ImportController extends Controller
 
       $validator = $this->get('validator');
 
-      $form = $this->getImportForm();
 
+      $form = $this->getImportForm();
       $form->handleRequest($request);
-      if ($form->isValid()) {
+      if ($form->isValid() && !empty($form->get('importedcsv')->getData())) {
         $file = $form->get('importedcsv')->getData();
         $fileName = md5(uniqid()).'.'.$file->guessExtension();
         $uploadDir = $this->container->getParameter('kernel.root_dir').'/../web/uploads/csv/';
@@ -140,7 +140,9 @@ class ImportController extends Controller
     private function getImportForm() {
       return $this->createFormBuilder()
                    ->setAction($this->generateUrl('app_import_csv_check_validity'))
-                   ->add('importedcsv', FileType::class, array('label' => 'Votre fichier'))
+                   ->add('importedcsv', new FileType(), array('label' => 'Votre fichier', 'constraints' => array(
+                     new NotBlank(),
+                    ),))
                    ->add('check', 'submit', array('label' => 'Vérifier'))
                    ->add('check_and_send', 'submit', array('label' => 'Vérifier et envoyer les voeux'))
                    ->getForm();
