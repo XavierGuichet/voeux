@@ -38,7 +38,7 @@ twig:
     globals:
         app_front_url:  "%app_front_url%"
         online_mail_dir:  "%online_mail_dir%"
-    
+
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
@@ -80,3 +80,6 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+    antiflood:
+      threshold: 99
+      sleep: 10
