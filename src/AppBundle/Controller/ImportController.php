@@ -51,7 +51,10 @@ class ImportController extends Controller
 
       $form = $this->getImportForm();
       $form->handleRequest($request);
-      if ($form->isValid() && !empty($form->get('importedcsv')->getData())) {
+      
+      $formImportedCsvData = $form->get('importedcsv')->getData();
+      
+      if ($form->isValid() && !empty($formImportedCsvData)) {
         $file = $form->get('importedcsv')->getData();
         $fileName = md5(uniqid()).'.'.$file->guessExtension();
         $uploadDir = $this->container->getParameter('kernel.root_dir').'/../web/uploads/csv/';
