@@ -20,7 +20,7 @@ class FrontController extends Controller
         $route = $this->container->get('router')->generate('app_front_merci');
 			return new RedirectResponse($route);
     }
-    
+
     /**
      * @Route("/faites-vous-plaisir/{tokenmail}", name="app_front_form")
      */
@@ -44,24 +44,35 @@ class FrontController extends Controller
 		$reponses->setPeople($VoeuxPropose->getPeople());
 		$reponses->setQuestionnaire($VoeuxPropose->getQuestionnaire());
 
-		$form = $this->createForm(new ReponsesType(), $reponses);	
-		$form->add('save', 'submit', array('label' => 'Envoyer'));	
+		$form = $this->createForm(new ReponsesType(), $reponses);
+		$form->add('save', 'submit', array('label' => 'Envoyer'));
 
 		$form->handleRequest($request);
 		if ($form->isValid()) {
 			$em->persist($reponses);
 			$VoeuxPropose->setIsAnswered(true);
-			$em->persist($VoeuxPropose);			
+			$em->persist($VoeuxPropose);
 			$em->flush();
 			$route = $this->container->get('router')->generate('app_front_merci');
 			return new RedirectResponse($route);
 		}
 
+    $preploadimg = array();
+
+    $questionnaire = $VoeuxPropose->getQuestionnaire();
+
+    foreach($questionnaire->getQuestions() as $linkquestion) {
+  		foreach($linkquestion->getQuestion()->getChoixs() as $key => $choix) {
+        $preploadimg[] = '../images/choix/'.$choix->getImagepath().'.jpg';
+  		}
+  	}
+
 		return $this->render('AppBundle:Front:form.html.twig', array(
-		'form' => $form->createView()
+		'form' => $form->createView(),
+    'preloading' => $preploadimg
 		));
     }
-    
+
     /**
      * @Route("/merci", name="app_front_merci")
      */
