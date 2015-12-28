@@ -2,6 +2,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Reponse
@@ -22,16 +23,19 @@ class Reponse
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Reponses",inversedBy="listreponses")
+     * @Assert\NotNull()
      */
     private $reponses;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Question")
+     * @Assert\NotNull()
      */
     private $question;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Choix")
+     * @Assert\NotNull()
      */
     private $choix;
 
