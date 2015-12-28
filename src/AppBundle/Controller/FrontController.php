@@ -26,51 +26,51 @@ class FrontController extends Controller
      */
     public function formAction($tokenmail, Request $request)
     {
-		$em = $this->getDoctrine()->getManager();
-		$repositoryVoeuxPropose = $em->getRepository('AppBundle\Entity\VoeuxPropose');
+        $em = $this->getDoctrine()->getManager();
+        $repositoryVoeuxPropose = $em->getRepository('AppBundle\Entity\VoeuxPropose');
 
-		$VoeuxPropose = $repositoryVoeuxPropose->getVoeuxCompletBytokenmail($tokenmail);
+        $VoeuxPropose = $repositoryVoeuxPropose->getVoeuxCompletBytokenmail($tokenmail);
 
-		if(!$VoeuxPropose) {
-			return $this->indexAction($request);
-		}
-		//Si deja repondu renvoi vers la page merci
-		if($VoeuxPropose->getIsAnswered() == true) {
-			$route = $this->container->get('router')->generate('app_front_merci');
-			return new RedirectResponse($route);
-		}
+        if(!$VoeuxPropose) {
+                return $this->indexAction($request);
+        }
+        //Si deja repondu renvoi vers la page merci
+        if($VoeuxPropose->getIsAnswered() == true) {
+                $route = $this->container->get('router')->generate('app_front_merci');
+                return new RedirectResponse($route);
+        }
 
-		$reponses = new Reponses();
-		$reponses->setPeople($VoeuxPropose->getPeople());
-		$reponses->setQuestionnaire($VoeuxPropose->getQuestionnaire());
+        $reponses = new Reponses();
+        $reponses->setPeople($VoeuxPropose->getPeople());
+        $reponses->setQuestionnaire($VoeuxPropose->getQuestionnaire());
 
-		$form = $this->createForm(new ReponsesType(), $reponses);
-		$form->add('save', 'submit', array('label' => 'Envoyer'));
+        $form = $this->createForm(new ReponsesType(), $reponses);
+        $form->add('save', 'submit', array('label' => 'Envoyer'));
 
-		$form->handleRequest($request);
-		if ($form->isValid()) {
-			$em->persist($reponses);
-			$VoeuxPropose->setIsAnswered(true);
-			$em->persist($VoeuxPropose);
-			$em->flush();
-			$route = $this->container->get('router')->generate('app_front_merci');
-			return new RedirectResponse($route);
-		}
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+                $em->persist($reponses);
+                $VoeuxPropose->setIsAnswered(true);
+                $em->persist($VoeuxPropose);
+                $em->flush();
+                $route = $this->container->get('router')->generate('app_front_merci');
+                return new RedirectResponse($route);
+        }
 
-    $preploadimg = array();
+        $preploadimg = array();
 
-    $questionnaire = $VoeuxPropose->getQuestionnaire();
+        $questionnaire = $VoeuxPropose->getQuestionnaire();
 
-    foreach($questionnaire->getQuestions() as $linkquestion) {
-  		foreach($linkquestion->getQuestion()->getChoixs() as $key => $choix) {
-        $preploadimg[] = '../images/choix/'.$choix->getImagepath().'.jpg';
-  		}
+        foreach($questionnaire->getQuestions() as $linkquestion) {
+            foreach($linkquestion->getQuestion()->getChoixs() as $key => $choix) {
+                $preploadimg[] = '../images/choix/'.$choix->getImagepath().'.jpg';
+            }
   	}
 
-		return $this->render('AppBundle:Front:form.html.twig', array(
-		'form' => $form->createView(),
-    'preloading' => $preploadimg
-		));
+        return $this->render('AppBundle:Front:form.html.twig', array(
+            'form' => $form->createView(),
+            'preloading' => $preploadimg
+        ));
     }
 
     /**
@@ -78,6 +78,6 @@ class FrontController extends Controller
      */
     public function merciAction()
     {
-		return $this->render('AppBundle:Front:merci.html.twig');
-	}
+        return $this->render('AppBundle:Front:merci.html.twig');
+    }
 }

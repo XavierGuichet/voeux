@@ -32,3 +32,8 @@ app_import_csv_file_upload:
 app_import_csv_check_validity:
     path:     /import/verification
     defaults: { _controller: AppBundle:Import:check_validity }
+
+#mail online version
+front_online_version:
+    path:     /online/{type}/{hash}
+    defaults: { _controller: AppBundle:Online:index }

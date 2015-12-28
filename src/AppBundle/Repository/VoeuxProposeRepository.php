@@ -26,7 +26,7 @@ class VoeuxProposeRepository extends \Doctrine\ORM\EntityRepository
                    ->setParameter('tok', $tokenmail)
                    ->add('orderBy','v.id ASC, QuestionnaireQuestion.ordre ASC');
                 
-        return $qb->getQuery()->getSingleResult();
+        return $qb->getQuery()->getOneOrNullResult();
     }
     
     public function getAllVoeuxPeople() {

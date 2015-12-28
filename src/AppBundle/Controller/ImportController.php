@@ -99,10 +99,9 @@ class ImportController extends Controller
 
         if ($form->get('check_and_send')->isClicked() && $error_count == 0) {
           foreach($table as $row) {
-            $curVoeuxPropose = $row["VoeuxPropose"];
+            $curVoeuxPropose = $row["VoeuxPropose"];            
             $tokenmail = md5(uniqid(null, true).date("YmdHis"));
             $curVoeuxPropose->setTokenmail($tokenmail);
-            $em->persist($curVoeuxPropose);
 
             //Preparation contenu mail
             if($curVoeuxPropose->getPeople()->getIsmale()) {
@@ -118,15 +117,24 @@ class ImportController extends Controller
                                  'mailtexte' => $curVoeuxPropose->getContenuMail()->getContenuTxt()
                                  );
 
-               if(preg_match('/@(freetouch\.fr|visibleo\.fr|koba\.com){1}$/',$curVoeuxPropose->getEnvoyeurEmail())) {
-                   $to = $curVoeuxPropose->getPeople()->getEmail();
-                   if (!$this->get('mail_to_user')->sendBestWishesEmail($to,$mailcontent,$curVoeuxPropose->getEnvoyeurEmail())) {
-                       throw $this->createNotFoundException('Unable to send Best Wishes mail.');
-                   }
-               }
+            if(preg_match('/@(freetouch\.fr|visibleo\.fr|koba\.com){1}$/',$curVoeuxPropose->getEnvoyeurEmail())) {
+                $to = $curVoeuxPropose->getPeople()->getEmail();
+                if (!$this->get('mail_to_user')->sendBestWishesEmail($to,$mailcontent,$curVoeuxPropose->getEnvoyeurEmail())) {
+                    throw $this->createNotFoundException('Unable to send Best Wishes mail.');
+                }
+            }
+            $em->persist($curVoeuxPropose); 
+            $em->flush();
           }
-          $em->flush();
           $form_message = "Soumission réussie";
+          /*
+            SET FOREIGN_KEY_CHECKS = 0;
+            TRUNCATE people;
+            TRUNCATE reponse;
+            TRUNCATE reponses;
+            TRUNCATE voeux_propose;
+            SET FOREIGN_KEY_CHECKS = 1;
+           */
         }
       }
 
@@ -155,7 +163,7 @@ class ImportController extends Controller
      * Converti une ligne de cellule en objet VoeuxPropose
      */
     private function CsvRowToVoeuxObject($cellIterator) {
-      $em = $this->getDoctrine()->getManager();
+      //$em = $this->getDoctrine()->getManager();
       $row = array();
       foreach ($cellIterator as $cell) {
               if (!is_null($cell) && !is_null($cell->getCalculatedValue())) {
@@ -185,7 +193,7 @@ class ImportController extends Controller
       $People->setEmail($row[6]);
       $People->setIsmale($row[7]);
 
-      $em->persist($People);
+      //$em->persist($People);
       $contenumail = $this->listContenu[$row[8] - 1];
       $questionnaire = $this->listQuestionnaire[$row[9] - 1];
 
@@ -193,7 +201,7 @@ class ImportController extends Controller
       $VoeuxPropose->setPeople($People);
       $VoeuxPropose->setContenuMail($contenumail);
       $VoeuxPropose->setEnvoyeurEmail($row[10]);
-      $em->persist($VoeuxPropose);
+      //$em->persist($VoeuxPropose);
       return $VoeuxPropose;
     }
 }

@@ -72,7 +72,7 @@ class MailToUser {
     }
 
     private function sendMail($subject, $view, $to){
-        //$view = $this->createOnlineVersion($view);
+        $view = $this->createOnlineVersion($view);
 
         // pour utiliser la fonction php mail à la place du smtp
         //$transport = \Swift_MailTransport::newInstance();

@@ -20,7 +20,7 @@ parameters:
     
     locale: fr_FR
     app_front_url: 'http://voeuxkoba.local'
-    online_mail_dir: /online/mail/
+    online_mail_dir: /uploads/online/mail/
 
     spe_mailer:
         freetouch:
