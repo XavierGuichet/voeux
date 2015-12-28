@@ -125,12 +125,12 @@ class AdminController extends Controller
 
 
 
-        if(isset($ligne_pb)) {
+        /*if(isset($ligne_pb)) {
           dump($ligne_pb);
           $response = new Response();
           $response->setStatusCode(500);
           return $response;
-        }
+        }*/
 
         rewind($handle);
         $content = stream_get_contents($handle);
