@@ -114,6 +114,7 @@ class AdminController extends Controller
                       $reponses[] = $reponse_item->getChoix()->getTitre();
                     }
                     else {
+                      $reponses[] = '';
                       $ligne_pb[] = array($identification,$reponse_item);
                     }
                 }
