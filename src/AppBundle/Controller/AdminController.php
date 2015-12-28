@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Entity\VoeuxPropose;
 use AppBundle\Entity\Questionnaire;
+use AppBundle\Entity\Reponse;
 use XG\PeopleBundle\Entity\People;
 
 use AppBundle\Form\Type\VoeuxProposeType;
@@ -109,11 +110,25 @@ class AdminController extends Controller
             if($Voeux->getIsAnswered()) {
                 $reponse = $repositoryReponses->getReponseByPeopleId($Voeux->getPeople()->getId());
                 foreach($reponse->getListreponses() as $reponse_item) {
-                    $reponses[] = $reponse_item->getChoix()->getTitre();
+                    if(is_a($reponse_item,"AppBundle\Entity\Reponse") && !is_null($reponse_item->getChoix())) {
+                      $reponses[] = $reponse_item->getChoix()->getTitre();
+                    }
+                    else {
+                      $ligne_pb[] = array($identification,$reponse_item);
+                    }
                 }
             }
             $lignecsv = array_merge ($identification,$reponses);
             fputcsv($handle, $lignecsv);
+        }
+
+
+
+        if(isset($ligne_pb)) {
+          dump($ligne_pb);
+          $response = new Response();
+          $response->setStatusCode(500);
+          return $response;
         }
 
         rewind($handle);
