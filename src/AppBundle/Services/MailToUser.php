@@ -101,6 +101,7 @@ class MailToUser {
 
         // variables dynamiques
         $lien_version_online = $this->app_front_url.$this->router->generate('front_online_version', array('type' => 'mail', 'hash' => $filename));
+        $lien_version_online = str_replace('voeux2016/voeux2016','voeux2016', $lien_version_online);
         $newView = str_replace('#LIEN_ONLINE#',$lien_version_online, $view);
 
         // traitement du fichier justificatif
