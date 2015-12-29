@@ -40,6 +40,7 @@ class ImportController extends Controller
     public function check_validityAction(Request $request) {
       $table = array();
       $form_message = "";
+      $file_integrity = "";
       $em = $this->getDoctrine()->getManager();
       $repositoryQuestionnaire = $em->getRepository('AppBundle\Entity\Questionnaire');
       $repositoryContenuMail = $em->getRepository('AppBundle\Entity\ContenuMail');
@@ -96,6 +97,11 @@ class ImportController extends Controller
             }
           }
         }
+        
+        if($row_count > 100){
+            $error_count++;
+            $file_integrity = "Votre fichier dépasse la limite de 100 lignes (total trouvé : ".$row_count."). Il faut séparer la liste en plusieurs fichiers.";
+        }
 
         if ($form->get('check_and_send')->isClicked() && $error_count == 0) {
           foreach($table as $row) {
@@ -141,7 +147,8 @@ class ImportController extends Controller
       return $this->render('AppBundle:Import:checkvalidity.html.twig', array(
         'form' => $form->createView(),
         'table_check' => $table,
-        'form_message' => $form_message
+        'form_message' => $form_message,
+        'file_integrity' => $file_integrity
       ));
     }
 

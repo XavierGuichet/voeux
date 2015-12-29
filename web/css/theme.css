@@ -188,6 +188,15 @@ fieldset .form_error {
   border: 1px solid lightgreen;
 }
 
+.form_error {
+  text-align: center;
+  padding: 1em;
+  margin: 0.5em 0;
+  color: #fff;
+  background: red;
+  border: 1px solid lightred;
+}
+
 /* line 18, ../../../../../sass/sass/theme.scss */
 img {
   max-width: 100%;

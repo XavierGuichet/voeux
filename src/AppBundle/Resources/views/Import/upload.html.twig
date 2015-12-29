@@ -6,17 +6,18 @@
   <section id="import">
 
     <div class="wrapper">
-
       <div class="row">
         <img src="{{ asset('images/bandeaux.jpg') }}"  alt="Logo Koba" />
       </div>
       <div class="row">
-        <div class="sm-4 sm-offset-4">
-        {{ form_start(form) }}
-        {{ form_errors(form) }}
-        {{ form_end(form) }}
+        <div class="container">
+          <div class="sm-4 sm-offset-4">
+            <h2>Import d'un fichier Excel (100 lignes max.)</h2>
+            {{ form_start(form) }}
+              {{ form_errors(form) }}
+            {{ form_end(form) }}
+          </div>
         </div>
-      </div>
     </div>
 
   </section>
