@@ -98,9 +98,9 @@ class ImportController extends Controller
           }
         }
         
-        if($row_count > 100){
+        if($row_count > 30){
             $error_count++;
-            $file_integrity = "Votre fichier dépasse la limite de 100 lignes (total trouvé : ".$row_count."). Il faut séparer la liste en plusieurs fichiers.";
+            $file_integrity = "Votre fichier dépasse la limite de 30 lignes (total trouvé : ".$row_count."). Il faut séparer la liste en plusieurs fichiers.";
         }
 
         if ($form->get('check_and_send')->isClicked() && $error_count == 0) {
