@@ -37,15 +37,15 @@ class AdminController extends Controller
 
              //Preparation contenu mail
              if($VoeuxPropose->getPeople()->getIsmale()) {
-                 $civilité = "Cher ".$VoeuxPropose->getPeople()->getPrenom();
+                 $civilite = "Cher ".$VoeuxPropose->getPeople()->getPrenom();
              }
              else {
-                 $civilité = "Chère ".$VoeuxPropose->getPeople()->getPrenom();
+                 $civilite = "Chère ".$VoeuxPropose->getPeople()->getPrenom();
              }
              $link = $this->container->get('router')->generate('app_front_form', array('tokenmail' => $tokenmail), true);
              $mailcontent = array('link' => $link,
                                   'token' => $tokenmail,
-                                  'civilite' => $civilité,
+                                  'civilite' => $civilite,
                                   'mailtexte' => $VoeuxPropose->getContenuMail()->getContenuTxt()
                                   );
 
@@ -87,16 +87,21 @@ class AdminController extends Controller
        $header = array();
 
         //Ajoute une ligne de titre au fichier
-        $titlecsv = array('Expediteur','Questionnaire repondu','Société','Nom','Prénom','Email','Adresse','Code postal','Ville','Titre questionnaire','Reponse 1','Reponse 2','Reponse 3','Reponse 4','Reponse 5');
+        $titlecsv = array('Expediteur','Questionnaire repondu','Société','Civilité','Nom','Prénom','Email','Adresse','Code postal','Ville','Titre questionnaire','Reponse 1','Reponse 2','Reponse 3','Reponse 4','Reponse 5');
         fputcsv($handle, $titlecsv);
 
         //Ajoute toutes les demandes, celles répondues d'abord
         foreach($listVoeux as $Voeux) {
 
+            $civilite = 'Mme';
+            if($Voeux->getPeople()->getIsmale()){
+                $civilite = 'M.';
+            }
 
             $identification = array($Voeux->getEnvoyeurEmail(),
                              $Voeux->getIsAnswered(),
                              $Voeux->getPeople()->getSociete(),
+                             $civilite,
                              $Voeux->getPeople()->getNom(),
                              $Voeux->getPeople()->getPrenom(),
                              $Voeux->getPeople()->getEmail(),
