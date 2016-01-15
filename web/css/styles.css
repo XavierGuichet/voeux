@@ -1,0 +1,123 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+a, a:hover, a:active{
+	outline: none;}
+
+/*inté*/
+
+*{
+	box-sizing: border-box;}
+
+html, body{
+	width: 100%; height: 100%;
+}
+
+body{	
+	background:url(../images/background.jpg) no-repeat center; background-size: cover;
+	font-family: 'Lato', sans-serif; color: #fff;	
+}
+
+img{
+	max-width: 100%; height: auto;}
+
+.wrapper{
+	min-height: 100%; width: 100%; position: relative;}
+
+.wrapper_item{
+	position:absolute;}
+
+.wrapper_item--top{
+	top: 20%; right: 20%;}
+
+.wrapper_item--bottom{
+	bottom: 15%;left: 8%;}
+
+.logo{
+	margin-bottom: 20px;} 
+
+.wrapper_item--bottom p{
+	font-size:30px;font-size: 3.4vw; font-weight:300; line-height: 1.15em;}
+
+.wrapper_item--bottom p span{
+	font-size:0.95em; font-weight:900; text-transform: uppercase; }
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+.wrapper_item--top{
+	top: 20%; right: 0; left: 0; text-align: center; width: 100%; padding: 0 30px;}
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+	body{	
+		background:url(../images/background-mobile.jpg) no-repeat center; background-size: cover; }	
+	.wrapper{
+		padding:8%;}
+	.wrapper_item{
+		position:relative;}
+	.wrapper_item--top,
+	.wrapper_item--bottom{
+		left: 0; right: 0; text-align: center; width: 100%; padding: 0;}
+	.wrapper_item--top{
+		margin-top: 15%;}
+	.wrapper_item--bottom p{
+		font-size: 25px;text-shadow: 0px -1px 3px #757575;}
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+    
+}

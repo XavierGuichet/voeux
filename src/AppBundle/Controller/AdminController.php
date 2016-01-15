@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -22,6 +23,7 @@ class AdminController extends Controller
      */
     public function indexAction(Request $request)
     {
+        /*
         $em = $this->getDoctrine()->getManager();
         $form_message = "";
         $VoeuxPropose = new VoeuxPropose();
@@ -70,7 +72,10 @@ class AdminController extends Controller
         return $this->render('AppBundle:Admin:index.html.twig', array(
             'form' => $form->createView(),
             'form_message' => $form_message
-            ));
+            ));         
+         */
+        $route = $this->container->get('router')->generate('app_frontpage');
+        return new RedirectResponse($route);
     }
 
     /**
@@ -127,15 +132,6 @@ class AdminController extends Controller
             $lignecsv = array_merge ($identification,$reponses);
             fputcsv($handle, $lignecsv);
         }
-
-
-
-        /*if(isset($ligne_pb)) {
-          dump($ligne_pb);
-          $response = new Response();
-          $response->setStatusCode(500);
-          return $response;
-        }*/
 
         rewind($handle);
         $content = stream_get_contents($handle);

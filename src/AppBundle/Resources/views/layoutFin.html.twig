@@ -17,29 +17,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-        <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Lato:300,900' rel='stylesheet' type='text/css'>		
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('css/normalize.css') }}" />
-            <link rel="stylesheet" href="{{ asset('css/xggrid.css') }}" />
-            <link rel="stylesheet" href="{{ asset('css/theme.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
         {% endblock %}
     </head>
     <body class="{% block bodyclass %}{% endblock %}">
-    {% block preload %}
-    {% endblock %}
-    
     {% block body  %}
     {% endblock %}
-
-
-    <footer>
-        <div class="row">
-            <div class="main-footer sm-12 columns">
-
-            </div>
-        </div>
-    </footer>
-	{% block javascript %}
+    
+    {% block javascript %}
     {% endblock %}
     </body>
 </html>

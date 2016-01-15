@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -27,17 +28,22 @@ class ImportController extends Controller
      */
     public function uploadAction()
     {
+        /*
       $form = $this->getImportForm();
 
       return $this->render('AppBundle:Import:upload.html.twig', array(
           'form' => $form->createView()
-          ));
+          ));         
+         */
+        $route = $this->container->get('router')->generate('app_frontpage');
+        return new RedirectResponse($route);
     }
 
     /**
      * @Route("/import/verification", name="app_import_csv_file_upload")
      */
     public function check_validityAction(Request $request) {
+        /*
       $table = array();
       $form_message = "";
       $file_integrity = "";
@@ -133,14 +139,6 @@ class ImportController extends Controller
             $em->flush();
           }
           $form_message = "Soumission réussie";
-          /*
-            SET FOREIGN_KEY_CHECKS = 0;
-            TRUNCATE people;
-            TRUNCATE reponse;
-            TRUNCATE reponses;
-            TRUNCATE voeux_propose;
-            SET FOREIGN_KEY_CHECKS = 1;
-           */
         }
       }
 
@@ -150,6 +148,10 @@ class ImportController extends Controller
         'form_message' => $form_message,
         'file_integrity' => $file_integrity
       ));
+      
+      */
+        $route = $this->container->get('router')->generate('app_frontpage');
+        return new RedirectResponse($route);
     }
 
     /**

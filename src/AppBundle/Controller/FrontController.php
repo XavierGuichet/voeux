@@ -17,8 +17,9 @@ class FrontController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $route = $this->container->get('router')->generate('app_front_merci');
-			return new RedirectResponse($route);
+        /*$route = $this->container->get('router')->generate('app_front_merci');
+        return new RedirectResponse($route);*/
+        return $this->render('AppBundle:Front:fin.html.twig');
     }
 
     /**
@@ -26,6 +27,7 @@ class FrontController extends Controller
      */
     public function formAction($tokenmail, Request $request)
     {
+        /*
         $em = $this->getDoctrine()->getManager();
         $repositoryVoeuxPropose = $em->getRepository('AppBundle\Entity\VoeuxPropose');
 
@@ -70,7 +72,10 @@ class FrontController extends Controller
         return $this->render('AppBundle:Front:form.html.twig', array(
             'form' => $form->createView(),
             'preloading' => $preploadimg
-        ));
+        ));         
+         */
+        $route = $this->container->get('router')->generate('app_frontpage');
+        return new RedirectResponse($route);
     }
 
     /**
@@ -78,6 +83,8 @@ class FrontController extends Controller
      */
     public function merciAction()
     {
-        return $this->render('AppBundle:Front:merci.html.twig');
+        //return $this->render('AppBundle:Front:merci.html.twig');
+        $route = $this->container->get('router')->generate('app_frontpage');
+        return new RedirectResponse($route);
     }
 }
